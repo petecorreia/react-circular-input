@@ -1,51 +1,67 @@
 {
-  "name": "react-circular-input",
-  "version": "0.0.0",
-  "description": "React components for easily composing a circular range input 🌀",
-  "author": "petecorreia",
-  "license": "MIT",
-  "homepage": "https://github.com/petecorreia/react-circular-input#readme",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "sideEffects": false,
-  "files": [
-    "dist"
-  ],
-  "scripts": {},
-  "peerDependencies": {
-    "styled-components": ">=4.0.0"
-  },
-  "devDependencies": {
-    "@types/d3-scale": "^2.0.2",
-    "@types/prop-types": "^15.5.8",
-    "@types/react": "^16.7.17",
-    "@types/styled-components": "^4.1.4",
-    "d3-scale": "^2.1.2",
-    "react": "^16.7.0-alpha.2",
-    "react-dom": "^16.7.0-alpha.2",
-    "styled-components": "^4.1.2",
-    "tslint": "^5.11.0",
-    "tslint-config-prettier": "^1.17.0",
-    "tslint-react": "^3.6.0"
-  },
-  "bugs": {
-    "url": "https://github.com/petecorreia/react-circular-input/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/petecorreia/react-circular-input.git"
-  },
-  "keywords": [
-    "react",
-    "circular",
-    "input",
-    "radial",
-    "gauge",
-    "react-circular-input",
-    "svg",
-    "touch",
-    "react-component",
-    "styled-components",
-    "presentational"
-  ]
+	"name": "react-circular-input",
+	"version": "0.0.0",
+	"description": "React components for easily composing a circular range input 🌀",
+	"author": "petecorreia",
+	"license": "MIT",
+	"homepage": "https://github.com/petecorreia/react-circular-input#readme",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"sideEffects": false,
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"format": "prettier --config .prettierrc --write \"src/**/*\""
+	},
+	"peerDependencies": {
+		"styled-components": ">=4.0.0"
+	},
+	"devDependencies": {
+		"@types/d3-scale": "^2.0.2",
+		"@types/prop-types": "^15.5.8",
+		"@types/react": "^16.7.17",
+		"@types/styled-components": "^4.1.4",
+		"d3-scale": "^2.1.2",
+		"husky": "^1.2.1",
+		"lint-staged": "^8.1.0",
+		"prettier": "^1.15.3",
+		"react": "^16.7.0-alpha.2",
+		"react-dom": "^16.7.0-alpha.2",
+		"styled-components": "^4.1.2",
+		"tslint": "^5.11.0",
+		"tslint-config-prettier": "^1.17.0",
+		"tslint-react": "^3.6.0"
+	},
+	"bugs": {
+		"url": "https://github.com/petecorreia/react-circular-input/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/petecorreia/react-circular-input.git"
+	},
+	"keywords": [
+		"react",
+		"circular",
+		"input",
+		"radial",
+		"gauge",
+		"react-circular-input",
+		"svg",
+		"touch",
+		"react-component",
+		"styled-components",
+		"presentational"
+	],
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"src/**/*.{js,ts,tsx}": [
+			"prettier --config .prettierrc --write",
+			"git add"
+		]
+	}
 }
