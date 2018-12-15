@@ -13,8 +13,9 @@
 	],
 	"scripts": {
 		"start": "tsc -w",
-		"build": "tsc",
+		"build": "yarn clean && tsc",
 		"format": "prettier --config .prettierrc --write \"src/**/*\"",
+		"clean": "rm -rf dist",
 		"size": "bundlesize"
 	},
 	"devDependencies": {
