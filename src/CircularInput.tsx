@@ -29,7 +29,7 @@ type Props = {
 	onChange: (value: number) => {}
 }
 
-function CircularInput({
+export function CircularInput({
 	value,
 	min,
 	max,
@@ -175,5 +175,3 @@ function CircularInput({
 		</svg>
 	)
 }
-
-export default CircularInput
