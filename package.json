@@ -14,12 +14,14 @@
 	"scripts": {
 		"start": "tsc -w",
 		"build": "tsc",
-		"format": "prettier --config .prettierrc --write \"src/**/*\""
+		"format": "prettier --config .prettierrc --write \"src/**/*\"",
+		"size": "bundlesize"
 	},
 	"devDependencies": {
 		"@types/d3-scale": "^2.0.2",
 		"@types/prop-types": "^15.5.8",
 		"@types/react": "^16.7.17",
+		"bundlesize": "^0.17.0",
 		"d3-scale": "^2.1.2",
 		"husky": "^1.2.1",
 		"lint-staged": "^8.1.0",
@@ -61,5 +63,11 @@
 			"prettier --config .prettierrc --write",
 			"git add"
 		]
-	}
+	},
+	"bundlesize": [
+		{
+			"path": "./dist/*.js",
+			"maxSize": "2 kB"
+		}
+	]
 }
