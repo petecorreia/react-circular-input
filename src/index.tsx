@@ -1,10 +1,6 @@
 import React, { useRef, HTMLProps, RefObject, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { scaleLinear } from 'd3-scale'
-import styled, {
-	StyledComponentProps,
-	StyledComponent,
-} from 'styled-components'
 import {
 	matrixScale,
 	polarToCartesian,
@@ -44,7 +40,7 @@ function CircularInput({
 	trackThickness,
 	onChange,
 	...props
-}: StyledComponentProps<'svg', {}, {}, any> & Props) {
+}: HTMLProps<SVGSVGElement> & Props) {
 	const svgNode: RefObject<SVGSVGElement> = useRef(null)
 	const size = radius * 2
 	const center = { x: radius, y: radius }
@@ -179,3 +175,5 @@ function CircularInput({
 		</svg>
 	)
 }
+
+export default CircularInput

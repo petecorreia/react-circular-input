@@ -12,26 +12,24 @@
 		"dist"
 	],
 	"scripts": {
+		"start": "tsc -w",
+		"build": "tsc",
 		"format": "prettier --config .prettierrc --write \"src/**/*\""
-	},
-	"peerDependencies": {
-		"styled-components": ">=4.0.0"
 	},
 	"devDependencies": {
 		"@types/d3-scale": "^2.0.2",
 		"@types/prop-types": "^15.5.8",
 		"@types/react": "^16.7.17",
-		"@types/styled-components": "^4.1.4",
 		"d3-scale": "^2.1.2",
 		"husky": "^1.2.1",
 		"lint-staged": "^8.1.0",
 		"prettier": "^1.15.3",
 		"react": "^16.7.0-alpha.2",
 		"react-dom": "^16.7.0-alpha.2",
-		"styled-components": "^4.1.2",
 		"tslint": "^5.11.0",
 		"tslint-config-prettier": "^1.17.0",
-		"tslint-react": "^3.6.0"
+		"tslint-react": "^3.6.0",
+		"typescript": "^3.2.2"
 	},
 	"bugs": {
 		"url": "https://github.com/petecorreia/react-circular-input/issues"
