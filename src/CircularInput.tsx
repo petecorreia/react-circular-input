@@ -30,17 +30,17 @@ type Props = {
 }
 
 export function CircularInput({
-	value,
-	min,
-	max,
-	maxSelectable,
-	radius,
-	disabled,
-	thumbRadius,
-	trackThickness,
-	onChange,
+	value = 0,
+	min = 0,
+	max = 1,
+	maxSelectable = 1,
+	radius = 120,
+	disabled = false,
+	thumbRadius = 15,
+	trackThickness = 20,
+	onChange = (value: number) => value,
 	...props
-}: HTMLProps<SVGSVGElement> & Props) {
+}: Props) {
 	const svgNode: RefObject<SVGSVGElement> = useRef(null)
 	const size = radius * 2
 	const center = { x: radius, y: radius }

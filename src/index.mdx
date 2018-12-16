@@ -1,0 +1,20 @@
+---
+name: react-circular-input
+route: /
+---
+
+import { useState } from 'react'
+import { Playground } from 'docz'
+import CircularInput from './'
+
+# react-circular-input
+
+React components for easily composing a circular range input 🌀
+
+<Playground>
+	{() => {
+		const [value, setValue] = useState(0.25)
+		console.log('value: ', value)
+		return <CircularInput value={value} onChange={v => setValue(v)} />
+	}}
+</Playground>
