@@ -8,7 +8,9 @@ const defaultProps = {
 
 export const CircularThumb = (props: SVGProps<SVGCircleElement>) => {
 	const dragProps = useCircularThumbDrag()
-	return <circle {...props} {...dragProps} />
+	return (
+		<circle style={{ touchAction: 'manipulation' }} {...props} {...dragProps} />
+	)
 }
 
 CircularThumb.defaultProps = defaultProps
