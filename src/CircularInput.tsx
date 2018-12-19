@@ -55,7 +55,7 @@ export function CircularInput({
 				width={size}
 				height={size}
 				{...props}
-				style={{ overflow: 'visible' }}
+				style={{ overflow: 'visible', touchAction: 'manipulation' }}
 			>
 				{props.children}
 			</svg>
