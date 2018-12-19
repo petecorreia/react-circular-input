@@ -10,8 +10,6 @@ import React, {
 	HTMLProps,
 } from 'react'
 import { getElementPosition } from './utils'
-import { Thumb } from './Thumb'
-import { Track } from './Track'
 
 type Props = {
 	value: number
@@ -24,7 +22,7 @@ type Coordinates = {
 	y: number
 }
 
-type CircularInputContextValue = {
+type InputContextValue = {
 	value: number
 	radius: number
 	center: Coordinates
@@ -32,21 +30,19 @@ type CircularInputContextValue = {
 	setValue: (...args: any) => number
 }
 
-const CircularInputContext: Context<
-	CircularInputContextValue | {}
-> = createContext({})
+const InputContext: Context<InputContextValue | {}> = createContext({})
 
-export function useCircularInputContext(): CircularInputContextValue {
-	const context = useContext(CircularInputContext)
+export function useInputContext(): InputContextValue {
+	const context = useContext(InputContext)
 	if (!context) {
 		throw new Error(
-			`CircularInput components cannot be rendered outside the CircularInput component`
+			`Input components cannot be rendered outside the Input component`
 		)
 	}
-	return context as CircularInputContextValue
+	return context as InputContextValue
 }
 
-export function CircularInput({
+export function Input({
 	value = 0.25,
 	radius = 100,
 	onChange = () => {},
@@ -58,7 +54,7 @@ export function CircularInput({
 	const setValue = onChange
 	const container = useContainerPosition(containerRef)
 	const context = useMemo(
-		(): CircularInputContextValue => ({
+		(): InputContextValue => ({
 			value,
 			radius,
 			center,
@@ -69,7 +65,7 @@ export function CircularInput({
 	)
 
 	return (
-		<CircularInputContext.Provider value={context}>
+		<InputContext.Provider value={context}>
 			<svg
 				ref={containerRef}
 				viewBox={`0 0 ${size} ${size}`}
@@ -80,7 +76,7 @@ export function CircularInput({
 			>
 				{props.children}
 			</svg>
-		</CircularInputContext.Provider>
+		</InputContext.Provider>
 	)
 }
 

@@ -11,7 +11,7 @@ import {
 	polarToCartesian,
 	absPos,
 } from './utils'
-import { useCircularInputContext } from './'
+import { useInputContext } from './'
 
 const defaultProps = {
 	r: 15,
@@ -19,13 +19,7 @@ const defaultProps = {
 }
 
 export const Thumb = (props: SVGProps<SVGCircleElement>) => {
-	const {
-		value,
-		radius,
-		center,
-		container,
-		setValue,
-	} = useCircularInputContext()
+	const { value, radius, center, container, setValue } = useInputContext()
 
 	const [isDragging, setDragging] = useState(false)
 

@@ -1,6 +1,3 @@
-export {
-	CircularInput as default,
-	useCircularInputContext,
-} from './CircularInput'
+export { Input, useInputContext } from './Input'
 export { Thumb } from './Thumb'
 export { Track } from './Track'

@@ -1,5 +1,5 @@
 import React, { SVGProps } from 'react'
-import { useCircularInputContext } from './'
+import { useInputContext } from './'
 import { DEG_360_IN_RAD, calculateNearestValueToPoint, absPos } from './utils'
 
 const defaultProps = {
@@ -12,13 +12,7 @@ export const Track = ({
 	strokeWidth,
 	...props
 }: SVGProps<SVGCircleElement>) => {
-	const {
-		value,
-		radius,
-		center,
-		container,
-		setValue,
-	} = useCircularInputContext()
+	const { value, radius, center, container, setValue } = useInputContext()
 
 	const innerCircumference = DEG_360_IN_RAD * radius
 
