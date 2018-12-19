@@ -5,7 +5,7 @@ route: /
 
 import { useState } from 'react'
 import { Playground } from 'docz'
-import CircularInput from './'
+import CircularInput, { Thumb, Track } from './'
 
 # react-circular-input
 
@@ -14,6 +14,15 @@ React components for easily composing a circular range input 🌀
 <Playground>
 	{() => {
 		const [value, setValue] = useState(0.25)
-		return <CircularInput value={value} onChange={v => setValue(v)} />
-	}}
+    	return (
+    		<CircularInput
+    			value={value}
+    			onChange={setValue}
+    		>
+    			<Track />
+    			<Thumb />
+			</CircularInput>
+    	)
+    }}
+
 </Playground>

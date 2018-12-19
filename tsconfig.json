@@ -4,6 +4,7 @@
 		"strict": true,
 		"noImplicitAny": true,
 		"removeComments": true,
+		"noUnusedLocals": true,
 		"allowSyntheticDefaultImports": true,
 		"declaration": true,
 		"sourceMap": true,
