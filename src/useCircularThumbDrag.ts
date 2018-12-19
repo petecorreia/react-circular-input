@@ -75,8 +75,8 @@ export function useCircularThumbDrag() {
 function addEventListeners(onMove: (e: any) => any, onEnd: (e: any) => any) {
 	document.addEventListener('mousemove', onMove, { passive: false })
 	document.addEventListener('touchmove', onMove, { passive: false })
-	document.addEventListener('mouseup', onEnd, { passive: false, once: true })
-	document.addEventListener('touchend', onEnd, { passive: false, once: true })
+	document.addEventListener('mouseup', onEnd, { passive: false })
+	document.addEventListener('touchend', onEnd, { passive: false })
 }
 
 function removeEventListeners(onMove: (e: any) => any, onEnd: (e: any) => any) {
