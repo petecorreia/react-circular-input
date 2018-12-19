@@ -1,0 +1,89 @@
+---
+name: Components
+route: /components
+---
+
+import { useState } from 'react'
+import { Playground } from 'docz'
+import { Input, Progress, Thumb, Track } from '../src'
+
+# Components
+
+## Progress
+
+Displays a circular segment from zero to the value provided.
+
+If you provide `onChange` to `Input`, it will update the value to nearest point on click.
+
+Takes same props as SVG `circle` **except for the following**:
+
+- `cx`
+- `cy`
+- `r`
+- `strokeDasharray`
+- `strokeDashoffset`
+- `transform`
+
+These are used to support functionality.
+
+<Playground>
+	{() => {
+		const [value, setValue] = useState(0.25)
+		return (
+			<Input value={value} onChange={setValue}>
+				<Progress />
+			</Input>
+		)
+	}}
+</Playground>
+
+## Thumb
+
+Displays a handle exactly at the right point in the circumference to match the value provided.
+
+If you provide `onChange` to `Input`, it will become draggable and update the value as it's dragged.
+
+Takes same props as SVG `circle` **except for the following**:
+
+- `cx`
+- `cy`
+- `onMouseDown`
+- `onTouchStart`
+
+These are used to support functionality.
+
+<Playground>
+	{() => {
+		const [value, setValue] = useState(0.25)
+		return (
+			<Input value={value} onChange={setValue}>
+				<Thumb />
+			</Input>
+		)
+	}}
+</Playground>
+
+## Track
+
+Displays the path which the `Thumb` will follow.
+
+If you provide `onChange` to `Input`, it will update the value to nearest point on click.
+
+Takes same props as SVG `circle` **except for the following**:
+
+- `cx`
+- `cy`
+- `r`
+
+These are used to support functionality.
+
+<Playground>
+	{() => {
+		const [value, setValue] = useState(0.25)
+		return (
+			<Input value={value} onChange={setValue}>
+				<Track />
+			</Input>
+		)
+	}}
+</Playground>

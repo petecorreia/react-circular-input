@@ -1,0 +1,68 @@
+---
+name: Examples
+route: /examples
+---
+
+import { useState } from 'react'
+import { Playground } from 'docz'
+import { Input, Progress, Thumb, Track } from '../src'
+
+# Examples
+
+## Fully featured
+
+<Playground>
+	{() => {
+		const [value, setValue] = useState(0.25)
+		return (
+			<Input value={value} onChange={setValue}>
+				<Track />
+				<Progress />
+				<Thumb />
+			</Input>
+		)
+	}}
+</Playground>
+
+## Readonly
+
+Omitting the `onChange` prop makes it readonly.
+
+<Playground>
+	{
+		<Input value={0.25}>
+			<Track />
+			<Progress />
+			<Thumb />
+		</Input>
+	}
+</Playground>
+
+## Just Progress
+
+<Playground>
+	{
+		<Input value={0.25}>
+			<Progress />
+		</Input>
+	}
+</Playground>
+
+## Customised
+
+`Track`, `Progress` and `Thumb` are just a SVG `circle`'s so you can tweak most (see Component docs) attributes 💅
+
+<Playground>
+	{() => {
+		const [value, setValue] = useState(0.25)
+		return (
+			<Input value={value} onChange={setValue}>
+				<Track strokeWidth={10} stroke="#ebebeb" />
+				<Progress strokeWidth={40} stroke="rgb(255,0,0)" />
+				<Thumb r={10} fill="rgba(255,255,255,0.5)" />
+			</Input>
+		)
+	}}
+</Playground>
+
+A declarative and composable approach means we have a lot of flexibility, check out the next sections for how to go further!

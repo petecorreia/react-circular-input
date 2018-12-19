@@ -5,29 +5,22 @@ import React, {
 	useMemo,
 	useContext,
 	Context,
-	useLayoutEffect,
-	useState,
 	HTMLProps,
 } from 'react'
-import { getElementPosition } from './utils'
+import { Coordinates } from './utils'
 
 type Props = {
+	value?: number
+	radius?: number
+	onChange?: (value: number) => any
+}
+
+type InputContextValue = Props & {
 	value: number
 	radius: number
 	onChange: (value: number) => any
-}
-
-type Coordinates = {
-	x: number
-	y: number
-}
-
-type InputContextValue = {
-	value: number
-	radius: number
 	center: Coordinates
-	container: Coordinates
-	setValue: (...args: any) => number
+	containerRef: RefObject<SVGSVGElement>
 }
 
 const InputContext: Context<InputContextValue | {}> = createContext({})
@@ -51,17 +44,15 @@ export function Input({
 	const containerRef: RefObject<SVGSVGElement> = useRef(null)
 	const size = radius * 2
 	const center = { x: radius, y: radius }
-	const setValue = onChange
-	const container = useContainerPosition(containerRef)
 	const context = useMemo(
 		(): InputContextValue => ({
 			value,
 			radius,
 			center,
-			container,
-			setValue,
+			containerRef,
+			onChange,
 		}),
-		[value, radius, center, container, setValue]
+		[value, radius, center, containerRef, onChange]
 	)
 
 	return (
@@ -78,14 +69,4 @@ export function Input({
 			</svg>
 		</InputContext.Provider>
 	)
-}
-
-function useContainerPosition(containerRef: RefObject<SVGSVGElement>) {
-	const [initialContainer, setInitialContainer] = useState({ x: 0, y: 0 })
-	const container = getElementPosition(containerRef.current) || initialContainer
-	useLayoutEffect(() => {
-		const pos = getElementPosition(containerRef.current)
-		setInitialContainer(pos || { x: 0, y: 0 })
-	}, [])
-	return container
 }

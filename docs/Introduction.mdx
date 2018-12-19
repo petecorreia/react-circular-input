@@ -1,0 +1,47 @@
+---
+name: Getting Started
+route: /
+---
+
+import { useState } from 'react'
+import { Playground } from 'docz'
+import { Input, Progress, Thumb, Track } from '../src'
+
+# Getting Started
+
+React components for easily composing a circular range input 🌀
+
+## Installation
+
+Install the package:
+
+```bash
+npm install react-circular-input
+```
+
+## Importing
+
+And import the components from the package:
+
+```
+import { Input, Progress, Thumb, Track } from 'react-circular-input'
+```
+
+Now you're ready to use the components! 🎉
+
+## Basic Usage
+
+<Playground>
+	{() => {
+		const [value, setValue] = useState(0.25)
+		return (
+			<Input value={value} onChange={setValue}>
+				<Track />
+				<Progress />
+				<Thumb />
+			</Input>
+		)
+	}}
+</Playground>
+
+A declarative and composable approach means we have a lot of flexibility, check out the next sections for how to go further!

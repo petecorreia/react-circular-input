@@ -10,20 +10,23 @@ import {
 	valueToAngle,
 	polarToCartesian,
 	absPos,
+	getElementPosition,
+	Coordinates,
 } from './utils'
 import { useInputContext } from './'
 
 const defaultProps = {
-	r: 15,
-	fill: 'white',
+	r: 20,
+	fill: '#0045e5',
 }
 
 export const Thumb = (props: SVGProps<SVGCircleElement>) => {
-	const { value, radius, center, container, setValue } = useInputContext()
+	const { value, radius, center, containerRef, onChange } = useInputContext()
 
 	const [isDragging, setDragging] = useState(false)
 
 	const handleStart = (e: MouseEvent | TouchEvent) => {
+		if (!onChange) return
 		e.stopPropagation()
 		e.preventDefault()
 		setDragging(true)
@@ -36,11 +39,11 @@ export const Thumb = (props: SVGProps<SVGCircleElement>) => {
 		const nearestValue = calculateNearestValueToPoint({
 			value,
 			point,
-			container,
+			container: getElementPosition(containerRef.current) as Coordinates,
 			center,
 			radius,
 		})
-		setValue(nearestValue)
+		onChange(nearestValue)
 	}
 
 	const handleEnd = (e: MouseEvent | TouchEvent) => {
