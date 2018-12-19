@@ -6,6 +6,7 @@ module.exports = {
 	typescript: true,
 	port: 3000,
 	files: './docs/**/*.{md,markdown,mdx}',
+	dest: 'dist-docs',
 	propsParser: false,
 	menu: [
 		'Getting Started',
