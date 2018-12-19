@@ -11,7 +11,7 @@ import {
 	CircularThumb,
 	CircularTrack,
 } from '../src'
-import { AnimatedThumb } from './components/AnimatedThumb'
+import { AnimatedThumb, AnimatedProgress } from './components/Animated'
 
 # Examples
 
@@ -81,7 +81,7 @@ You can use libraries like `react-spring` to add animation.
 		return (
 			<CircularInput value={value} onChange={setValue}>
 				<CircularTrack />
-				<CircularProgress />
+				<AnimatedProgress />
 				<AnimatedThumb />
 			</CircularInput>
 		)
