@@ -11,6 +11,7 @@ import {
 	CircularThumb,
 	CircularTrack,
 } from '../src'
+import { AnimatedThumb } from './components/AnimatedThumb'
 
 # Examples
 
@@ -43,7 +44,7 @@ Omitting the `onChange` prop makes it readonly.
 	}
 </Playground>
 
-## Just CircularProgress
+## Progress
 
 <Playground>
 	{
@@ -65,6 +66,23 @@ Omitting the `onChange` prop makes it readonly.
 				<CircularTrack strokeWidth={10} stroke="#ebebeb" />
 				<CircularProgress strokeWidth={40} stroke="rgb(255,0,0)" />
 				<CircularThumb r={10} fill="rgba(255,255,255,0.5)" />
+			</CircularInput>
+		)
+	}}
+</Playground>
+
+## Animated
+
+You can use libraries like `react-spring` to add animation.
+
+<Playground>
+	{() => {
+		const [value, setValue] = useState(0.25)
+		return (
+			<CircularInput value={value} onChange={setValue}>
+				<CircularTrack />
+				<CircularProgress />
+				<AnimatedThumb />
 			</CircularInput>
 		)
 	}}
