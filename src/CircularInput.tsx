@@ -15,7 +15,7 @@ type Props = {
 	onChange?: (value: number) => any
 }
 
-type InputContextValue = Props & {
+type CircularInputContextValue = Props & {
 	value: number
 	radius: number
 	onChange: (value: number) => any
@@ -23,19 +23,11 @@ type InputContextValue = Props & {
 	containerRef: RefObject<SVGSVGElement>
 }
 
-const InputContext: Context<InputContextValue | {}> = createContext({})
+const CircularInputContext: Context<
+	CircularInputContextValue | {}
+> = createContext({})
 
-export function useInputContext(): InputContextValue {
-	const context = useContext(InputContext)
-	if (!context) {
-		throw new Error(
-			`Input components cannot be rendered outside the Input component`
-		)
-	}
-	return context as InputContextValue
-}
-
-export function Input({
+export function CircularInput({
 	value = 0.25,
 	radius = 100,
 	onChange = () => {},
@@ -45,7 +37,7 @@ export function Input({
 	const size = radius * 2
 	const center = { x: radius, y: radius }
 	const context = useMemo(
-		(): InputContextValue => ({
+		(): CircularInputContextValue => ({
 			value,
 			radius,
 			center,
@@ -56,7 +48,7 @@ export function Input({
 	)
 
 	return (
-		<InputContext.Provider value={context}>
+		<CircularInputContext.Provider value={context}>
 			<svg
 				ref={containerRef}
 				viewBox={`0 0 ${size} ${size}`}
@@ -67,6 +59,16 @@ export function Input({
 			>
 				{props.children}
 			</svg>
-		</InputContext.Provider>
+		</CircularInputContext.Provider>
 	)
+}
+
+export function useCircularInputContext(): CircularInputContextValue {
+	const context = useContext(CircularInputContext)
+	if (!context) {
+		throw new Error(
+			`CircularInput components cannot be rendered outside the CircularInput component`
+		)
+	}
+	return context as CircularInputContextValue
 }

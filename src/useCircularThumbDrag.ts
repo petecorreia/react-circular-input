@@ -1,10 +1,4 @@
-import React, {
-	MouseEvent,
-	TouchEvent,
-	useState,
-	useEffect,
-	SVGProps,
-} from 'react'
+import { MouseEvent, TouchEvent, useState, useEffect } from 'react'
 import {
 	calculateNearestValueToPoint,
 	valueToAngle,
@@ -13,15 +7,16 @@ import {
 	getElementPosition,
 	Coordinates,
 } from './utils'
-import { useInputContext } from './'
+import { useCircularInputContext } from './'
 
-const defaultProps = {
-	r: 20,
-	fill: '#0045e5',
-}
-
-export const Thumb = (props: SVGProps<SVGCircleElement>) => {
-	const { value, radius, center, containerRef, onChange } = useInputContext()
+export function useCircularThumbDrag() {
+	const {
+		value,
+		radius,
+		center,
+		containerRef,
+		onChange,
+	} = useCircularInputContext()
 
 	const [isDragging, setDragging] = useState(false)
 
@@ -69,18 +64,13 @@ export const Thumb = (props: SVGProps<SVGCircleElement>) => {
 		[isDragging]
 	)
 
-	return (
-		<circle
-			{...props}
-			cx={x}
-			cy={y}
-			onMouseDown={handleStart}
-			onTouchStart={handleStart}
-		/>
-	)
+	return {
+		cx: x,
+		cy: y,
+		onMouseDown: handleStart,
+		onTouchStart: handleStart,
+	}
 }
-
-Thumb.defaultProps = defaultProps
 
 function addEventListeners(onMove: (e: any) => any, onEnd: (e: any) => any) {
 	document.addEventListener('mousemove', onMove, { passive: false })

@@ -10,6 +10,7 @@ module.exports = {
 	menu: [
 		'Getting Started',
 		'Components',
+		'Hooks',
 		'Examples',
 		{
 			name: 'Github',

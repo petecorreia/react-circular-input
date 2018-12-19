@@ -7607,6 +7607,13 @@ react-sizes@^1.0.4:
     lodash.throttle "^4.1.1"
     prop-types "^15.6.0"
 
+react-spring@^7.2.0:
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/react-spring/-/react-spring-7.2.0.tgz#8fc98685283358d7ad3476725025e63550eb0903"
+  integrity sha512-50axu4kvyNweTh8OV8lit5jbNLndCYTAlf2AfRDw2XvYuaHvwCtar/hiBT9Ng9fgdrMJgoGr4Mu2LrzAyRBogg==
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+
 react@^16.6.3:
   version "16.6.3"
   resolved "https://registry.yarnpkg.com/react/-/react-16.6.3.tgz#25d77c91911d6bbdd23db41e70fb094cc1e0871c"

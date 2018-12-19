@@ -5,7 +5,12 @@ route: /examples
 
 import { useState } from 'react'
 import { Playground } from 'docz'
-import { Input, Progress, Thumb, Track } from '../src'
+import {
+	CircularInput,
+	CircularProgress,
+	CircularThumb,
+	CircularTrack,
+} from '../src'
 
 # Examples
 
@@ -15,11 +20,11 @@ import { Input, Progress, Thumb, Track } from '../src'
 	{() => {
 		const [value, setValue] = useState(0.25)
 		return (
-			<Input value={value} onChange={setValue}>
-				<Track />
-				<Progress />
-				<Thumb />
-			</Input>
+			<CircularInput value={value} onChange={setValue}>
+				<CircularTrack />
+				<CircularProgress />
+				<CircularThumb />
+			</CircularInput>
 		)
 	}}
 </Playground>
@@ -30,37 +35,37 @@ Omitting the `onChange` prop makes it readonly.
 
 <Playground>
 	{
-		<Input value={0.25}>
-			<Track />
-			<Progress />
-			<Thumb />
-		</Input>
+		<CircularInput value={0.25}>
+			<CircularTrack />
+			<CircularProgress />
+			<CircularThumb />
+		</CircularInput>
 	}
 </Playground>
 
-## Just Progress
+## Just CircularProgress
 
 <Playground>
 	{
-		<Input value={0.25}>
-			<Progress />
-		</Input>
+		<CircularInput value={0.25}>
+			<CircularProgress />
+		</CircularInput>
 	}
 </Playground>
 
 ## Customised
 
-`Track`, `Progress` and `Thumb` are just a SVG `circle`'s so you can tweak most (see Component docs) attributes 💅
+`CircularTrack`, `CircularProgress` and `CircularThumb` are just a SVG `circle`'s so you can tweak most (see Component docs) attributes 💅
 
 <Playground>
 	{() => {
 		const [value, setValue] = useState(0.25)
 		return (
-			<Input value={value} onChange={setValue}>
-				<Track strokeWidth={10} stroke="#ebebeb" />
-				<Progress strokeWidth={40} stroke="rgb(255,0,0)" />
-				<Thumb r={10} fill="rgba(255,255,255,0.5)" />
-			</Input>
+			<CircularInput value={value} onChange={setValue}>
+				<CircularTrack strokeWidth={10} stroke="#ebebeb" />
+				<CircularProgress strokeWidth={40} stroke="rgb(255,0,0)" />
+				<CircularThumb r={10} fill="rgba(255,255,255,0.5)" />
+			</CircularInput>
 		)
 	}}
 </Playground>

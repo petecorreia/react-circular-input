@@ -1,5 +1,5 @@
 import React, { SVGProps } from 'react'
-import { useInputContext } from './'
+import { useCircularInputContext } from './'
 import {
 	calculateNearestValueToPoint,
 	absPos,
@@ -14,11 +14,17 @@ const defaultProps = {
 	strokeLinecap: 'round',
 }
 
-export const Track = ({
+export const CircularTrack = ({
 	strokeWidth,
 	...props
 }: SVGProps<SVGCircleElement>) => {
-	const { value, radius, center, containerRef, onChange } = useInputContext()
+	const {
+		value,
+		radius,
+		center,
+		containerRef,
+		onChange,
+	} = useCircularInputContext()
 
 	return (
 		<>
@@ -57,4 +63,4 @@ export const Track = ({
 	)
 }
 
-Track.defaultProps = defaultProps
+CircularTrack.defaultProps = defaultProps

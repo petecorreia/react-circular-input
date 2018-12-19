@@ -1,0 +1,46 @@
+---
+name: Hooks
+route: /hooks
+---
+
+import { useState } from 'react'
+import { Playground } from 'docz'
+import {
+	CircularInput,
+	CircularProgress,
+	CircularThumb,
+	CircularTrack,
+	useCircularThumbDrag,
+} from '../src'
+import { useSpring } from 'react-spring/hooks'
+
+# Hooks
+
+⚠️ **The hooks below can only be used by children of `CircularInput`**.
+
+## useCircularThumbDrag
+
+Returns props to spread on a `circle` or you can destructure and roll your own!
+
+```jsx
+const CustomCircularThumb = () => {
+	const dragProps = useCircularThumbDrag()
+	return <circle r={20} fill="red" {...dragProps} />
+}
+```
+
+The above is almost the entire implementation of the `CircularThumb` component 💪
+
+## useCircularInputContext
+
+As the names implies, returns the same context used by the components so you can your own custom ones. 🙂
+
+```jsx
+const {
+	value,
+	radius,
+	onChange,
+	center,
+	containerRef,
+} = useCircularInputContext()
+```
