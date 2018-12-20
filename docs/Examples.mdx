@@ -49,11 +49,15 @@ Omitting the `onChange` prop makes it readonly.
 Can be used to simply display progress.
 
 <Playground>
-	{
-		<CircularInput value={0.25}>
-			<CircularProgress />
-		</CircularInput>
-	}
+	{() => {
+		const [value, setValue] = useState(0.75)
+		return (
+			<CircularInput value={value} onChange={setValue}>
+				<CircularTrack />
+				<CircularProgress />
+			</CircularInput>
+		)
+	}}
 </Playground>
 
 ## Styled
