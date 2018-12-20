@@ -8,9 +8,7 @@ const defaultProps = {
 
 export const CircularProgress = (props: SVGProps<SVGCircleElement>) => {
 	const { value, radius, center } = useCircularInputContext()
-
 	const innerCircumference = DEG_360_IN_RAD * radius
-
 	return (
 		<CircularTrack
 			{...props}

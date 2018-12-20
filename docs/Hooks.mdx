@@ -10,7 +10,7 @@ import {
 	CircularProgress,
 	CircularThumb,
 	CircularTrack,
-	useCircularThumbDrag,
+	useCircularDrag,
 } from '../src'
 import { useSpring } from 'react-spring/hooks'
 
@@ -18,13 +18,13 @@ import { useSpring } from 'react-spring/hooks'
 
 ⚠️ **The hooks below can only be used by children of `CircularInput`**.
 
-## useCircularThumbDrag
+## useCircularDrag
 
 Returns props to spread on a `circle` or you can destructure and roll your own!
 
 ```jsx
 const CustomCircularThumb = () => {
-	const dragProps = useCircularThumbDrag()
+	const dragProps = useCircularDrag()
 	return <circle r={20} fill="red" {...dragProps} />
 }
 ```

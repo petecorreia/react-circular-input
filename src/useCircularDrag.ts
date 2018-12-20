@@ -1,41 +1,21 @@
-import { MouseEvent, TouchEvent, useEffect, RefObject } from 'react'
-import {
-	calculateNearestValueToPoint,
-	valueToAngle,
-	polarToCartesian,
-	absPos,
-	getElementPosition,
-	Coordinates,
-} from './utils'
+import { MouseEvent, TouchEvent, useEffect, RefObject, useState } from 'react'
 import { useCircularInputContext } from './'
 
-export function useCircularThumbDrag(thumbRef: RefObject<SVGElement | null>) {
-	const {
-		value,
-		radius,
-		center,
-		containerRef,
-		onChange,
-		isDragging,
-		setDragging,
-	} = useCircularInputContext()
+export function useCircularDrag(ref: RefObject<SVGElement | null>) {
+	const { onChange, getValueFromPointerEvent } = useCircularInputContext()
+	const [isDragging, setDragging] = useState(false)
 
 	const handleStart = (e: MouseEvent | TouchEvent) => {
 		if (!onChange) return
 		stopEvent(e)
 		setDragging(true)
+		const nearestValue = getValueFromPointerEvent(e)
+		onChange(nearestValue)
 	}
 
 	const handleMove = (e: MouseEvent | TouchEvent) => {
 		stopEvent(e)
-		const point = absPos(e)
-		const nearestValue = calculateNearestValueToPoint({
-			value,
-			point,
-			container: getElementPosition(containerRef.current) as Coordinates,
-			center,
-			radius,
-		})
+		const nearestValue = getValueFromPointerEvent(e)
 		onChange(nearestValue)
 	}
 
@@ -44,23 +24,17 @@ export function useCircularThumbDrag(thumbRef: RefObject<SVGElement | null>) {
 		setDragging(false)
 	}
 
-	const { x, y } = polarToCartesian({
-		center,
-		angle: valueToAngle(value),
-		radius,
-	})
-
 	// we can't just use React for this due to needing { passive: false } to prevent touch devices scrolling
 	useEffect(
 		() => {
-			if (!thumbRef.current) return
-			addStartListeners(thumbRef.current, handleStart)
+			if (!ref.current) return
+			addStartListeners(ref.current, handleStart)
 			return () => {
-				if (!thumbRef.current) return
-				removeStartListeners(thumbRef.current, handleStart)
+				if (!ref.current) return
+				removeStartListeners(ref.current, handleStart)
 			}
 		},
-		[thumbRef]
+		[ref]
 	)
 
 	useEffect(
@@ -74,10 +48,7 @@ export function useCircularThumbDrag(thumbRef: RefObject<SVGElement | null>) {
 		[isDragging]
 	)
 
-	return {
-		x,
-		y,
-	}
+	return
 }
 
 function addStartListeners(

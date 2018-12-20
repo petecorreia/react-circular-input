@@ -1,23 +1,12 @@
 import React, { SVGProps, useRef } from 'react'
-import { useCircularThumbDrag } from '.'
-
-const defaultProps = {
-	r: 20,
-	fill: '#0045e5',
-}
+import { useCircularInputContext, useCircularDrag } from './'
 
 export const CircularThumb = (props: SVGProps<SVGCircleElement>) => {
-	const thumbRef = useRef<SVGCircleElement | null>(null)
-	const { x, y } = useCircularThumbDrag(thumbRef)
-	return (
-		<circle
-			style={{ touchAction: 'manipulation' }}
-			{...props}
-			ref={thumbRef}
-			cx={x}
-			cy={y}
-		/>
-	)
+	const { getPointFromValue } = useCircularInputContext()
+	const point = getPointFromValue()
+	if (!point) return null
+	const { x, y } = point
+	const ref = useRef<SVGCircleElement | null>(null)
+	useCircularDrag(ref)
+	return <circle r={20} fill="#0045e5" {...props} ref={ref} cx={x} cy={y} />
 }
-
-CircularThumb.defaultProps = defaultProps

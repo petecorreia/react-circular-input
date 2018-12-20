@@ -1,13 +1,8 @@
-import React, { SVGProps } from 'react'
+import React, { SVGProps, useRef } from 'react'
 import { useCircularInputContext } from './'
-import {
-	calculateNearestValueToPoint,
-	absPos,
-	getElementPosition,
-	Coordinates,
-} from './utils'
+import { useCircularDrag } from './useCircularDrag'
 
-const defaultProps = {
+export const defaultProps = {
 	stroke: '#CEE0F5',
 	fill: 'none',
 	strokeWidth: 20,
@@ -18,48 +13,18 @@ export const CircularTrack = ({
 	strokeWidth,
 	...props
 }: SVGProps<SVGCircleElement>) => {
-	const {
-		value,
-		radius,
-		center,
-		containerRef,
-		onChange,
-	} = useCircularInputContext()
-
+	const { radius, center } = useCircularInputContext()
+	const ref = useRef<SVGCircleElement | null>(null)
+	useCircularDrag(ref)
 	return (
-		<>
-			<circle
-				strokeWidth={strokeWidth}
-				{...props}
-				cx={center.x}
-				cy={center.y}
-				r={radius}
-			/>
-
-			{/* event catcher (invisible and slightly wider than track) */}
-			{onChange && (
-				<circle
-					{...props}
-					cx={center.x}
-					cy={center.y}
-					r={radius}
-					strokeWidth={parseFloat(strokeWidth as string) * 2}
-					strokeOpacity={0}
-					onClick={e => {
-						const nearestValue = calculateNearestValueToPoint({
-							center,
-							container: getElementPosition(
-								containerRef.current
-							) as Coordinates,
-							point: absPos(e),
-							radius,
-							value,
-						})
-						onChange(nearestValue)
-					}}
-				/>
-			)}
-		</>
+		<circle
+			strokeWidth={strokeWidth}
+			{...props}
+			ref={ref}
+			cx={center.x}
+			cy={center.y}
+			r={radius}
+		/>
 	)
 }
 

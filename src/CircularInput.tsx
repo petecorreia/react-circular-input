@@ -1,34 +1,28 @@
 import React, {
 	useRef,
 	RefObject,
-	createContext,
 	useMemo,
-	useContext,
-	Context,
 	HTMLProps,
-	useState,
+	useCallback,
 } from 'react'
-import { Coordinates } from './utils'
+import {
+	Coordinates,
+	polarToCartesian,
+	valueToAngle,
+	calculateNearestValueToPoint,
+	getElementPosition,
+	absPos,
+} from './utils'
+import {
+	CircularInputContext,
+	CircularInputProvider,
+} from './CircularInputContext'
 
 type Props = {
 	value?: number
 	radius?: number
 	onChange?: (value: number) => any
 }
-
-type CircularInputContextValue = Props & {
-	value: number
-	radius: number
-	center: Coordinates
-	isDragging: boolean
-	containerRef: RefObject<SVGSVGElement>
-	onChange: (value: number) => any
-	setDragging: (isDragging: boolean) => any
-}
-
-const CircularInputContext: Context<
-	CircularInputContextValue | {}
-> = createContext({})
 
 export function CircularInput({
 	value = 0.25,
@@ -37,48 +31,72 @@ export function CircularInput({
 	...props
 }: HTMLProps<SVGSVGElement> & Props) {
 	const containerRef: RefObject<SVGSVGElement> = useRef(null)
-	const [isDragging, setDragging] = useState(false)
 	const size = radius * 2
 	const center = { x: radius, y: radius }
+
+	const getPointFromValue = useCallback(
+		v =>
+			polarToCartesian({
+				center,
+				angle: valueToAngle(v || value),
+				radius,
+			}),
+		[value, center, radius]
+	)
+
+	const getValueFromPointerEvent = useCallback(
+		e =>
+			calculateNearestValueToPoint({
+				point: absPos(e),
+				container: getElementPosition(containerRef.current) as Coordinates,
+				value,
+				center,
+				radius,
+			}),
+		[containerRef.current, value, center, radius]
+	)
+
 	const context = useMemo(
-		(): CircularInputContextValue => ({
+		(): CircularInputContext => ({
 			value,
 			radius,
 			center,
-			containerRef,
 			onChange,
-			isDragging,
-			setDragging,
+			getPointFromValue,
+			getValueFromPointerEvent,
 		}),
-		[value, radius, center, containerRef, onChange, isDragging, setDragging]
+		[value, radius, center, onChange]
 	)
 
+	const handleClick = useCallback(
+		e => {
+			if (!onChange) return
+			const nearestValue = getValueFromPointerEvent(e)
+			onChange(nearestValue)
+		},
+		[onChange, getValueFromPointerEvent]
+	)
+
+	const style = {
+		overflow: 'visible',
+		...(props.style || {}),
+		touchAction: 'manipulation',
+		WebkitTapHighlightColor: 'rgba(0,0,0,0)',
+	}
+
 	return (
-		<CircularInputContext.Provider value={context}>
+		<CircularInputProvider value={context}>
 			<svg
 				ref={containerRef}
 				viewBox={`0 0 ${size} ${size}`}
 				width={size}
 				height={size}
 				{...props}
-				style={{
-					overflow: 'visible',
-					touchAction: 'manipulation',
-					WebkitTapHighlightColor: 'rgba(0,0,0,0)',
-				}}
+				style={style}
+				onClick={handleClick}
 			>
 				{props.children}
 			</svg>
-		</CircularInputContext.Provider>
+		</CircularInputProvider>
 	)
-}
-
-export function useCircularInputContext(): CircularInputContextValue {
-	const context = useContext(CircularInputContext)
-	if (!context) {
-		throw new Error(
-			`CircularInput components cannot be rendered outside the CircularInput component`
-		)
-	}
-	return context as CircularInputContextValue
 }
