@@ -12,24 +12,37 @@ import {
 	calculateNearestValueToPoint,
 	getElementPosition,
 	absPos,
+	Weaken,
 } from './utils'
 import {
 	CircularInputContext,
 	CircularInputProvider,
 } from './CircularInputContext'
+import { CircularTrack } from './CircularTrack'
+import { CircularProgress } from './CircularProgress'
+import { CircularThumb } from './CircularThumb'
 
-type Props = {
-	value?: number
+type DefaultHTMLProps = HTMLProps<SVGSVGElement>
+
+type Props = Weaken<DefaultHTMLProps, 'onChange'> & {
+	value: number
 	radius?: number
 	onChange?: (value: number) => any
+	// disallow some props
+	ref?: undefined
+	width?: undefined
+	height?: undefined
+	viewBox?: undefined
+	onClick?: undefined
 }
 
 export function CircularInput({
 	value = 0.25,
 	radius = 100,
 	onChange = () => {},
+	children,
 	...props
-}: HTMLProps<SVGSVGElement> & Props) {
+}: Props) {
 	const containerRef: RefObject<SVGSVGElement> = useRef(null)
 	const size = radius * 2
 	const center = { x: radius, y: radius }
@@ -87,15 +100,21 @@ export function CircularInput({
 	return (
 		<CircularInputProvider value={context}>
 			<svg
+				{...props}
 				ref={containerRef}
-				viewBox={`0 0 ${size} ${size}`}
 				width={size}
 				height={size}
-				{...props}
+				viewBox={`0 0 ${size} ${size}`}
 				style={style}
 				onClick={handleClick}
 			>
-				{props.children}
+				{children || (
+					<>
+						<CircularTrack />
+						<CircularProgress />
+						<CircularThumb />
+					</>
+				)}
 			</svg>
 		</CircularInputProvider>
 	)

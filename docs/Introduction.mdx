@@ -18,15 +18,11 @@ React components for easily composing a circular range input 🌀
 
 ## Installation
 
-Install the package:
-
 ```bash
 npm install react-circular-input
 ```
 
 ## Importing
-
-And import the components from the package:
 
 ```
 import {
@@ -37,15 +33,13 @@ import {
 } from 'react-circular-input'
 ```
 
-Now you're ready to use the components! 🎉
-
 ## Usage
 
 <Playground>
 	{() => {
 		const [value, setValue] = useState(0.25)
 		return (
-			<CircularInput value={value} onChange={setValue}>
+			<CircularInput value={value} radius={100} onChange={setValue}>
 				<CircularTrack />
 				<CircularProgress />
 				<CircularThumb />
@@ -53,5 +47,7 @@ Now you're ready to use the components! 🎉
 		)
 	}}
 </Playground>
+
+There's a lot more you can do with the library. From a simple gauge to a fully custom and animated circular input range.
 
 A declarative and composable approach means we have a lot of flexibility, check out the next sections for how to go further!

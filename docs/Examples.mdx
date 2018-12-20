@@ -5,13 +5,13 @@ route: /examples
 
 import { useState } from 'react'
 import { Playground } from 'docz'
+import { Spring } from 'react-spring'
 import {
 	CircularInput,
 	CircularProgress,
 	CircularThumb,
 	CircularTrack,
 } from '../src'
-import { AnimatedThumb, AnimatedProgress } from './components/Animated'
 
 # Examples
 
@@ -46,6 +46,8 @@ Omitting the `onChange` prop makes it readonly.
 
 ## Progress
 
+Can be used to simply display progress.
+
 <Playground>
 	{
 		<CircularInput value={0.25}>
@@ -54,7 +56,7 @@ Omitting the `onChange` prop makes it readonly.
 	}
 </Playground>
 
-## Customised
+## Styled
 
 `CircularTrack`, `CircularProgress` and `CircularThumb` are just a SVG `circle`'s so you can tweak most (see Component docs) attributes 💅
 
@@ -79,11 +81,15 @@ You can use libraries like `react-spring` to add animation.
 	{() => {
 		const [value, setValue] = useState(0.25)
 		return (
-			<CircularInput value={value} onChange={setValue}>
-				<CircularTrack />
-				<AnimatedProgress />
-				<AnimatedThumb />
-			</CircularInput>
+			<Spring to={{ value }}>
+				{props => (
+					<CircularInput value={props.value} onChange={setValue}>
+						<CircularTrack />
+						<CircularProgress />
+						<CircularThumb />
+					</CircularInput>
+				)}
+			</Spring>
 		)
 	}}
 </Playground>

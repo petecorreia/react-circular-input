@@ -10,9 +10,12 @@ module.exports = {
 	propsParser: false,
 	menu: [
 		'Getting Started',
-		'Components',
-		'Hooks',
 		'Examples',
+		'CircularInput',
+		'CircularProgress',
+		'CircularThumb',
+		'CircularTrack',
+		'Hooks',
 		{
 			name: 'Github',
 			href: 'https://github.com/petecorreia/react-circular-input',

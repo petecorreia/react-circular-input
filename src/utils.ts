@@ -8,6 +8,12 @@ export type Coordinates = {
 	y: number
 }
 
+// weakens a type, useful for unions that override props
+// see: https://github.com/Microsoft/TypeScript/issues/3402#issuecomment-385975990
+export type Weaken<T, K extends keyof T> = {
+	[P in keyof T]: P extends K ? any : T[P]
+}
+
 export function polarToCartesian({
 	center,
 	angle,

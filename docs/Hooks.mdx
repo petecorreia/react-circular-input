@@ -18,29 +18,31 @@ import { useSpring } from 'react-spring/hooks'
 
 ⚠️ **The hooks below can only be used by children of `CircularInput`**.
 
+Very useful for implementing your own interactive custom components! 👆
+
 ## useCircularDrag
 
-Returns props to spread on a `circle` or you can destructure and roll your own!
+Makes an element trigger the `onChange` on click and drag with the nearest value.
+
+Adds/removes event listeners as needed so you don't have to worry about that complexity.
 
 ```jsx
-const CustomCircularThumb = () => {
-	const dragProps = useCircularDrag()
-	return <circle r={20} fill="red" {...dragProps} />
-}
+const ref = useRef(null)
+useCircularDrag(ref)
+// ...on click/drag it's going to update value to the nearest point in the value circumference
 ```
-
-The above is almost the entire implementation of the `CircularThumb` component 💪
 
 ## useCircularInputContext
 
-As the names implies, returns the same context used by the components so you can your own custom ones. 🙂
+As the names implies, gives you access to the same context used by the components so you can create custom ones. 🙂
 
 ```jsx
 const {
 	value,
 	radius,
-	onChange,
 	center,
-	containerRef,
+	onChange,
+	getPointFromValue, // returns {x,y} when given a value [0-1]
+	getValueFromPointerEvent, // returns the nearest value to the given {x,y}
 } = useCircularInputContext()
 ```
