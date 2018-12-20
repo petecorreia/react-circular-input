@@ -1,18 +1,19 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { useSpring, animated, interpolate } from 'react-spring/hooks'
 import { useCircularThumbDrag, useCircularInputContext } from '../../src'
 import { polarToCartesian, valueToAngle, DEG_360_IN_RAD } from '../../src/utils'
 
 export const AnimatedThumb = () => {
+	const thumbRef = useRef<SVGCircleElement | null>(null)
 	const { value, center, radius } = useCircularInputContext()
-	const dragProps = useCircularThumbDrag()
+	useCircularThumbDrag(thumbRef)
 	const { value: animatedValue } = useSpring({ value })
 
 	return (
 		<animated.circle
+			ref={thumbRef}
 			r={20}
 			fill="#0045e5"
-			{...dragProps}
 			cx={interpolate([animatedValue], v => {
 				const { x } = polarToCartesian({
 					center,

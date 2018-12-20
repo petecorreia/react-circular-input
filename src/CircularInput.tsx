@@ -6,6 +6,7 @@ import React, {
 	useContext,
 	Context,
 	HTMLProps,
+	useState,
 } from 'react'
 import { Coordinates } from './utils'
 
@@ -18,9 +19,11 @@ type Props = {
 type CircularInputContextValue = Props & {
 	value: number
 	radius: number
-	onChange: (value: number) => any
 	center: Coordinates
+	isDragging: boolean
 	containerRef: RefObject<SVGSVGElement>
+	onChange: (value: number) => any
+	setDragging: (isDragging: boolean) => any
 }
 
 const CircularInputContext: Context<
@@ -34,6 +37,7 @@ export function CircularInput({
 	...props
 }: HTMLProps<SVGSVGElement> & Props) {
 	const containerRef: RefObject<SVGSVGElement> = useRef(null)
+	const [isDragging, setDragging] = useState(false)
 	const size = radius * 2
 	const center = { x: radius, y: radius }
 	const context = useMemo(
@@ -43,8 +47,10 @@ export function CircularInput({
 			center,
 			containerRef,
 			onChange,
+			isDragging,
+			setDragging,
 		}),
-		[value, radius, center, containerRef, onChange]
+		[value, radius, center, containerRef, onChange, isDragging, setDragging]
 	)
 
 	return (
