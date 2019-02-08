@@ -1,0 +1,18 @@
+{
+	"version": 2,
+	"name": "react-circular-input",
+	"alias": "react-circular-input",
+	"builds": [
+		{
+			"src": "docs/next.config.js",
+			"use": "@now/next"
+		}
+	],
+	"routes": [
+		{
+			"src": "^(.*)$",
+			"dest": "docs$1"
+		}
+	],
+	"regions": ["bru", "sfo"]
+}

@@ -1,0 +1,6 @@
+{
+  "name": "react-circular-input",
+  "version": "0.0.1-dev",
+  "main": "index.ts",
+  "private": true
+}

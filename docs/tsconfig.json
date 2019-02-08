@@ -1,0 +1,20 @@
+{
+	"compilerOptions": {
+		"target": "esnext",
+		"module": "esnext",
+		"jsx": "react",
+		"lib": ["dom", "es2018"],
+		"moduleResolution": "node",
+		"allowJs": true,
+		"noEmit": true,
+		"allowSyntheticDefaultImports": true,
+		"skipLibCheck": true,
+		"noUnusedParameters": true,
+		"removeComments": false,
+		"preserveConstEnums": true,
+		"sourceMap": true,
+		"strict": true,
+		"noImplicitAny": true,
+		"include": ["../src/**/*"]
+	}
+}
