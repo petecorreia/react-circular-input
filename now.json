@@ -1,0 +1,18 @@
+{
+	"version": 2,
+	"name": "react-circular-input",
+	"alias": "react-circular-input",
+	"builds": [
+		{
+			"src": "docs/tsx-docs.config.js",
+			"use": "petecorreia/now-tsx-docs"
+		}
+	],
+	"routes": [
+		{
+			"src": "^(.*)$",
+			"dest": "docs$1"
+		}
+	],
+	"regions": ["gru", "sfo", "bru"]
+}

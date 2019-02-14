@@ -4,7 +4,7 @@
 	"description": "React components for easily composing a circular range input 🌀",
 	"author": "petecorreia",
 	"license": "MIT",
-	"homepage": "https://github.com/petecorreia/react-circular-input#readme",
+	"homepage": "https://react-circular-input.now.sh",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
 	"sideEffects": false,
@@ -14,25 +14,24 @@
 	"scripts": {
 		"start": "tsc -w",
 		"build": "yarn clean && tsc",
-		"format": "prettier --config .prettierrc --write \"src/**/*\"",
+		"prepare": "npm run build",
 		"clean": "rm -rf dist",
+		"format": "prettier --config .prettierrc --write \"src/**/*\"",
 		"lint": "tslint --project tsconfig.json --config tslint.json 'src/**/*.{ts,tsx}'",
-		"size": "bundlesize",
-		"docz:dev": "docz dev",
-		"docz:build": "docz build"
+		"docs:dev": "npm link && cd docs && npm link react-circular-input && npm run dev",
+		"postinstall": "cd docs && npm i"
+	},
+	"peerDependencies": {
+		"react": ">= 16.8.0",
+		"react-dom": ">= 16.8.0"
 	},
 	"devDependencies": {
+		"@babel/runtime-corejs2": "^7.3.1",
 		"@types/prop-types": "^15.5.8",
 		"@types/react": "^16.7.17",
-		"bundlesize": "^0.17.0",
-		"docz": "^0.12.17",
-		"docz-theme-default": "^0.12.17",
-		"husky": "^1.2.1",
-		"lint-staged": "^8.1.0",
 		"prettier": "^1.15.3",
-		"react": "^16.7.0-alpha.2",
-		"react-codemirror2": "^5.1.0",
-		"react-dom": "^16.7.0-alpha.2",
+		"react": "16.8.1",
+		"react-dom": "16.8.1",
 		"react-spring": "^7.2.0",
 		"tslint": "^5.11.0",
 		"tslint-config-prettier": "^1.17.0",
@@ -58,22 +57,5 @@
 		"react-component",
 		"styled-components",
 		"presentational"
-	],
-	"husky": {
-		"hooks": {
-			"pre-commit": "lint-staged"
-		}
-	},
-	"lint-staged": {
-		"src/**/*.{js,ts,tsx}": [
-			"prettier --config .prettierrc --write",
-			"git add"
-		]
-	},
-	"bundlesize": [
-		{
-			"path": "./dist/*.js",
-			"maxSize": "2 kB"
-		}
 	]
 }
