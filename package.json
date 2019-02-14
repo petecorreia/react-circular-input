@@ -17,9 +17,7 @@
 		"prepare": "npm run build",
 		"clean": "rm -rf dist",
 		"format": "prettier --config .prettierrc --write \"src/**/*\"",
-		"lint": "tslint --project tsconfig.json --config tslint.json 'src/**/*.{ts,tsx}'",
-		"docs:dev": "npm link && cd docs && npm link react-circular-input && npm run dev",
-		"postinstall": "cd docs && npm i"
+		"lint": "tslint --project tsconfig.json --config tslint.json 'src/**/*.{ts,tsx}'"
 	},
 	"peerDependencies": {
 		"react": ">= 16.8.0",
