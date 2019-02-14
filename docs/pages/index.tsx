@@ -2,44 +2,76 @@ import React, { useState } from 'react'
 import { Lead, CodeHighlight, Link } from 'tsx-docs'
 import { CircularInput } from '../../src'
 
-export default () => {
-	const [value, setValue] = useState(0.5)
+const Example = () => {
+	const [value, setValue] = useState(0.25)
 	return (
-		<>
-			<Lead>
-				Welcome to your Docs{' '}
-				<span role="img" aria-label="party">
-					🎉
-				</span>
-			</Lead>
-
-			<CircularInput value={value} onChange={v => setValue(v)} />
-
-			<p>
-				We recommend following our{' '}
-				<a href="https://tsx-docs.now.sh/guide">Guide</a> if you're not already
-				doing it.
-			</p>
-
-			<p>
-				You should also have a look at all the{' '}
-				<a href="https://tsx-docs.now.sh/configuration">
-					configuration options
-				</a>{' '}
-				and the provided{' '}
-				<a href="https://tsx-docs.now.sh/components">components</a>.
-			</p>
-
-			<hr />
-
-			<CodeHighlight
-				code={`
-					npm run dev
-					npm run build
-					npm run typecheck
-				`}
-				language="bash"
-			/>
-		</>
+		<CircularInput
+			value={value}
+			onChange={v => setValue(v)}
+			style={{ marginTop: 40, marginBottom: 20 }}
+		/>
 	)
 }
+
+export default () => (
+	<>
+		<Lead>
+			React components for easily composing a circular range input{' '}
+			<span role="img" aria-label="party">
+				🌀
+			</span>
+		</Lead>
+
+		<Example />
+
+		<CodeHighlight
+			code={`
+			npm i react-circular-input
+		`}
+			language="bash"
+		/>
+
+		<h2>Example</h2>
+
+		<p>You can use the default circular input:</p>
+
+		<CodeHighlight
+			code={`
+				import { CircularInput } from 'react-circular-input'
+
+				export default () => {
+					const [value, setValue] = useState(0.25)
+
+					return (
+						<CircularInput value={value} onChange={v => setValue(v)} />
+					)
+				}
+			`}
+		/>
+
+		<p>Or compose it:</p>
+
+		<CodeHighlight
+			code={`
+				import {
+					CircularInput,
+					CircularTrack,
+					CircularProgress,
+					CircularThumb,
+				} from 'react-circular-input'
+
+				export default () => {
+					const [value, setValue] = useState(0.25)
+
+					return (
+						<CircularInput value={value} onChange={v => setValue(v)}>
+							<CircularTrack />
+							<CircularProgress />
+							<CircularThumb />
+						</CircularInput>
+					)
+				}
+			`}
+		/>
+	</>
+)

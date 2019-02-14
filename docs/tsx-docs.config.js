@@ -1,12 +1,14 @@
 module.exports = {
 	include: ['../src'],
-	title: 'Project X',
-	description: 'Built with tsx-docs',
+	title: 'react-circular-input',
+	description:
+		'React components for easily composing a circular range input 🌀',
+	author: 'Pete Correia',
+	authorURL: 'https://petecorreia.com',
 	routes: [
-		{ name: 'About', path: '/about' },
 		{
 			name: 'Github',
-			path: 'https://github.com/petecorreia/tsx-docs',
+			path: 'https://github.com/petecorreia/react-circular-input',
 		},
 	],
 	nextConfig: {
