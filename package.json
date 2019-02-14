@@ -19,7 +19,7 @@
 		"format": "prettier --config .prettierrc --write \"src/**/*\"",
 		"lint": "tslint --project tsconfig.json --config tslint.json 'src/**/*.{ts,tsx}'",
 		"docs:dev": "npm link && cd docs && npm link react-circular-input && npm run dev",
-		"postinstall": "cd docs && npm i"
+		"_postinstall": "cd docs && npm i"
 	},
 	"peerDependencies": {
 		"react": ">= 16.8.0",
