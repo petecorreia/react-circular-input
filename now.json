@@ -5,7 +5,10 @@
 	"builds": [
 		{
 			"src": "docs/tsx-docs.config.js",
-			"use": "petecorreia/now-tsx-docs"
+			"use": "petecorreia/now-tsx-docs",
+			"config": {
+				"packageJson": "package.json"
+			}
 		}
 	],
 	"routes": [

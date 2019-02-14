@@ -17,7 +17,10 @@
 		"prepare": "npm run build",
 		"clean": "rm -rf dist",
 		"format": "prettier --config .prettierrc --write \"src/**/*\"",
-		"lint": "tslint --project tsconfig.json --config tslint.json 'src/**/*.{ts,tsx}'"
+		"lint": "tslint --project tsconfig.json --config tslint.json 'src/**/*.{ts,tsx}'",
+		"docs:dev": "tsx-docs dev docs",
+		"docs:build": "tsx-docs build docs",
+		"now-build": "npm run docs:build"
 	},
 	"peerDependencies": {
 		"react": ">= 16.8.0",
@@ -34,6 +37,7 @@
 		"tslint": "^5.11.0",
 		"tslint-config-prettier": "^1.17.0",
 		"tslint-react": "^3.6.0",
+		"tsx-docs": "latest",
 		"typescript": "^3.2.2"
 	},
 	"bugs": {

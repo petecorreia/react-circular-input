@@ -1,4 +1,5 @@
 module.exports = {
+	include: ['../src'],
 	title: 'Project X',
 	description: 'Built with tsx-docs',
 	routes: [
