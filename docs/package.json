@@ -16,8 +16,8 @@
 	},
 	"dependencies": {
 		"react": "16.8.1",
-		"react-circular-input": "latest",
 		"react-dom": "16.8.1",
+		"react-circular-input": "latest",
 		"tsx-docs": "latest"
 	},
 	"devDependencies": {
