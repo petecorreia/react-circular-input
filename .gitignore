@@ -1,5 +1,3 @@
 node_modules
 dist
-dist-docs
-coverage
-.docz
+.next
