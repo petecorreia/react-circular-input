@@ -17,6 +17,8 @@ React components for easily composing a circular range input
 npm i react-circular-input 
 ```
 
+<img width="300" src="https://react-circular-input.now.sh/static/screenshot.png" alt="Screenshot">
+
 ## Example
 
 You can use the default circular input:
