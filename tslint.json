@@ -7,6 +7,7 @@
 		"jsx-no-multiline-js": false,
 		"no-submodule-imports": false,
 		"no-implicit-dependencies": [true, "dev"],
+		"no-console": false,
 		"ordered-imports": false,
 		"object-literal-sort-keys": false,
 		"curly": [true, "ignore-same-line"],
