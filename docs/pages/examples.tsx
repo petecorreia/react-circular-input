@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Spring, config } from 'react-spring/renderprops.cjs'
-import { CodeHighlight, Lead } from 'tsx-docs'
+import { CodeHighlight, Lead, Link } from 'tsx-docs'
 import BoxCenteredOnMobile from '../components/BoxCenteredOnMobile'
 import {
 	CircularInput,
@@ -218,5 +218,23 @@ export default () => (
 				</CircularInput>
 			`}
 		/>
+
+		<p>
+			It might be a good time to dive deep into customisation with components
+			and hooks:
+		</p>
+
+		<ul>
+			<li>
+				<Link href="/components">
+					<a>Components</a>
+				</Link>
+			</li>
+			<li>
+				<Link href="/hooks">
+					<a>Hooks</a>
+				</Link>
+			</li>
+		</ul>
 	</>
 )

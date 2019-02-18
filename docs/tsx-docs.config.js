@@ -7,7 +7,15 @@ module.exports = {
 	routes: [
 		{
 			name: 'Examples',
-			path: 'examples',
+			path: '/examples',
+		},
+		{
+			name: 'Components',
+			path: '/components',
+		},
+		{
+			name: 'Hooks',
+			path: '/hooks',
 		},
 		{
 			name: 'Github',

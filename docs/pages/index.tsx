@@ -87,6 +87,16 @@ export default () => (
 					<a>Examples</a>
 				</Link>
 			</li>
+			<li>
+				<Link href="/components">
+					<a>Components</a>
+				</Link>
+			</li>
+			<li>
+				<Link href="/hooks">
+					<a>Hooks</a>
+				</Link>
+			</li>
 		</ul>
 	</>
 )
