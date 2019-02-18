@@ -57,11 +57,11 @@
 		"input",
 		"radial",
 		"gauge",
+		"knob",
 		"react-circular-input",
 		"svg",
 		"touch",
 		"react-component",
-		"styled-components",
 		"presentational"
 	]
 }
