@@ -14,28 +14,12 @@ React components for easily composing a circular range input
 [github-release]: https://flat.badgen.net/github/release/petecorreia/react-circular-input
 
 ```sh
-npm i react-circular-input 
+npm i react-circular-input
 ```
 
 <a href="https://react-circular-input.now.sh/"><img width="300" src="https://react-circular-input.now.sh/static/screenshot.png" alt="Screenshot"></a>
 
 ## Example
-
-You can use the default circular input:
-
-```tsx
-import { CircularInput } from 'react-circular-input'
-
-export default () => {
-	const [value, setValue] = useState(0.25)
-
-	return (
-		<CircularInput value={value} onChange={setValue} />
-	)
-}
-```
-
-Or **compose it**:
 
 ```tsx
 import {
@@ -60,15 +44,19 @@ export default () => {
 
 There's a lot more you can do with the library. From a simple gauge to a fully custom and animated circular input range.
 
+Play around with **[examples at CodeSandbox](https://codesandbox.io/s/ypwq61rnxz?hidenavigation=1)**:
+
+[![Edit react-circular-input](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/ypwq61rnxz?hidenavigation=1)
+
 A declarative and composable approach means we have a lot of flexibility, check out the documentation for how to go further!
 
 ## Documentation
 
 Full documentation at **[react-circular-input.now.sh](https://react-circular-input.now.sh)**.
 
-* [Examples](https://react-circular-input.now.sh/examples)
-* [Components](https://react-circular-input.now.sh/components)
-* [Hooks](https://react-circular-input.now.sh/hooks)
+- [Examples](https://react-circular-input.now.sh/examples)
+- [Components](https://react-circular-input.now.sh/components)
+- [Hooks](https://react-circular-input.now.sh/hooks)
 
 Enjoy! 🎉
 

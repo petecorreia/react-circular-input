@@ -28,26 +28,6 @@ export default () => (
 
 		<h2>Example</h2>
 
-		<p>You can use the default circular input:</p>
-
-		<CodeHighlight
-			code={`
-				import { CircularInput } from 'react-circular-input'
-
-				export default () => {
-					const [value, setValue] = useState(0.25)
-
-					return (
-						<CircularInput value={value} onChange={setValue} />
-					)
-				}
-			`}
-		/>
-
-		<p>
-			Or <strong>compose it:</strong>
-		</p>
-
 		<CodeHighlight
 			code={`
 				import {
@@ -75,6 +55,26 @@ export default () => (
 			There's a lot more you can do with the library. From a simple gauge to a
 			fully custom and animated circular input range.
 		</p>
+
+		<p>
+			Play around with the{' '}
+			<a
+				href="https://codesandbox.io/s/ypwq61rnxz?hidenavigation=1&view=preview"
+				target="_blank"
+			>
+				<strong>examples at CodeSandbox</strong>
+			</a>
+		</p>
+
+		<a
+			href="https://codesandbox.io/s/ypwq61rnxz?hidenavigation=1&view=preview"
+			target="_blank"
+		>
+			<img
+				alt="Edit react-circular-input"
+				src="https://codesandbox.io/static/img/play-codesandbox.svg"
+			/>
+		</a>
 
 		<p>
 			A declarative and composable approach means we have a lot of flexibility,

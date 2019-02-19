@@ -7,9 +7,9 @@ import {
 	CircularTrack,
 	CircularProgress,
 	CircularThumb,
+	useCircularInputContext,
 } from '../../src'
 import styled from 'styled-components'
-import { animated } from 'react-spring/renderprops-universal'
 
 const FullFeaturedExample = () => {
 	const [value, setValue] = useState(0.25)
@@ -33,11 +33,11 @@ const ProgressExample = () => {
 	}, [])
 
 	return (
-		<Spring to={{ value }}>
+		<Spring to={{ value }} config={config.slow}>
 			{props => (
 				<CircularInput value={props.value}>
-					<CircularTrack />
-					<CircularProgress />
+					<CircularTrack strokeWidth={5} stroke="#eee" />
+					<CircularProgress stroke={`hsl(${props.value * 100}, 100%, 50%)`} />
 				</CircularInput>
 			)}
 		</Spring>
@@ -83,12 +83,73 @@ const AnimatedExample = () => {
 	)
 }
 
+const CustomComponent = () => {
+	const { getPointFromValue, value } = useCircularInputContext()
+	const { x, y } = getPointFromValue()
+
+	return (
+		<text
+			x={x}
+			y={y}
+			textAnchor="middle"
+			dy="0.35em"
+			fill="rgb(61, 153, 255)"
+			style={{ pointerEvents: 'none', fontWeight: 'bold' }}
+		>
+			{Math.round(value * 100)}
+		</text>
+	)
+}
+
+const CustomExample = () => {
+	const [value, setValue] = useState(0.25)
+
+	return (
+		<Spring to={{ value }} config={config.stiff}>
+			{props => (
+				<CircularInput value={props.value} onChange={setValue}>
+					<CircularProgress
+						strokeWidth={45}
+						stroke={`rgba(61, 153, 255, ${props.value})`}
+					/>
+					<CircularThumb
+						fill="white"
+						stroke="rgb(61, 153, 255)"
+						strokeWidth="5"
+					/>
+					<CustomComponent />
+				</CircularInput>
+			)}
+		</Spring>
+	)
+}
+
 export default () => (
 	<>
 		<Lead>
 			A declarative and composable approach means we have a lot of flexibility,
 			here are a few examples that showcase it.
 		</Lead>
+
+		<p>
+			Play around with the{' '}
+			<a
+				href="https://codesandbox.io/s/ypwq61rnxz?hidenavigation=1&view=preview"
+				target="_blank"
+			>
+				<strong>examples at CodeSandbox</strong>
+			</a>
+		</p>
+
+		<a
+			href="https://codesandbox.io/s/ypwq61rnxz?hidenavigation=1&view=preview"
+			target="_blank"
+		>
+			<img
+				alt="Edit react-circular-input"
+				src="https://codesandbox.io/static/img/play-codesandbox.svg"
+			/>
+		</a>
 
 		<h2 id="full-featured">Full featured</h2>
 
@@ -163,6 +224,7 @@ export default () => (
 		<CodeHighlight
 			code={`
 				const [value, setValue] = useState(0.25)
+
 				return (
 					<StyledCircularInput value={value} onChange={setValue}>
 						{/* CSS-in-JS */}
@@ -178,27 +240,49 @@ export default () => (
 			`}
 		/>
 
-		<h2 id="readonly">Readonly</h2>
+		<h2 id="custom">Custom Component</h2>
 
 		<p>
-			⚠️ Omitting the <code>onChange</code> prop makes it readonly.
+			Using the provided{' '}
+			<strong>
+				<Link href="/hooks">
+					<a>Hooks</a>
+				</Link>
+			</strong>{' '}
+			you can create your own components! 🤩
 		</p>
 
 		<BoxCenteredOnMobile py={[3, 3, 4]} mt={4}>
-			<CircularInput value={0.25}>
-				<CircularTrack />
-				<CircularProgress />
-				<CircularThumb />
-			</CircularInput>
+			<CustomExample />
 		</BoxCenteredOnMobile>
 
 		<CodeHighlight
 			code={`
-				<CircularInput value={0.25}>
-					<CircularTrack />
-					<CircularProgress />
-					<CircularThumb />
-				</CircularInput>
+				const CustomComponent = () => {
+					const { getPointFromValue, value } = useCircularInputContext()
+					const { x, y } = getPointFromValue()
+
+					return (
+						<text x={x} y={y} style={{ pointerEvents: 'none' }}>
+							{Math.round(value * 100)}
+						</text>
+					)
+				}
+
+				const CustomComponentExample = () => {
+					const [value, setValue] = useState(0.25)
+
+					return (
+						<CircularInput value={value} onChange={setValue}>
+							<CircularProgress />
+							<CircularThumb />
+
+							{/* Add any component and use the provided hooks! */}
+							<CustomComponent />
+
+						</CircularInput>
+					)
+				}
 			`}
 		/>
 
@@ -208,6 +292,28 @@ export default () => (
 
 		<BoxCenteredOnMobile py={[3, 3, 4]} mt={4}>
 			<ProgressExample />
+		</BoxCenteredOnMobile>
+
+		<CodeHighlight
+			code={`
+				<CircularInput value={Math.random()}>
+					<CircularTrack strokeWidth={5} stroke="#eee" />
+					<CircularProgress stroke={\`hsl(\${props.value * 100}, 100%, 50%)\`} />
+				</CircularInput>
+			`}
+		/>
+
+		<h2 id="readonly">Readonly</h2>
+
+		<p>
+			Omitting the <code>onChange</code> prop makes it readonly.
+		</p>
+
+		<BoxCenteredOnMobile py={[3, 3, 4]} mt={4}>
+			<CircularInput value={0.25}>
+				<CircularTrack />
+				<CircularProgress />
+			</CircularInput>
 		</BoxCenteredOnMobile>
 
 		<CodeHighlight
