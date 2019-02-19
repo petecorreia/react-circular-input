@@ -4,6 +4,8 @@ import {
 	Context as ReactContext,
 	MouseEvent,
 	TouchEvent,
+	SetStateAction,
+	Dispatch,
 } from 'react'
 import { Coordinates } from './utils'
 
@@ -11,6 +13,8 @@ export type CircularInputContext = {
 	value: number
 	radius: number
 	center: Coordinates
+	isFocused: boolean
+	setFocused: Dispatch<SetStateAction<boolean>>
 	onChange: (value: number) => any
 	getPointFromValue: (v?: number) => Coordinates | null
 	getValueFromPointerEvent: (e: MouseEvent | TouchEvent) => number

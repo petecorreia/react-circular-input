@@ -124,6 +124,24 @@ const CustomExample = () => {
 	)
 }
 
+const RenderPropExample = () => {
+	const [value, setValue] = useState(0.25)
+	return (
+		<CircularInput value={value} onChange={setValue}>
+			{({ getPointFromValue }) => (
+				<>
+					<CircularTrack />
+					<CircularProgress />
+					<text {...getPointFromValue()} dx="30" dy="0.3em">
+						wee!
+					</text>
+					<CircularThumb />
+				</>
+			)}
+		</CircularInput>
+	)
+}
+
 export default () => (
 	<>
 		<Lead>
@@ -322,6 +340,56 @@ export default () => (
 					<CircularTrack />
 					<CircularProgress />
 				</CircularInput>
+			`}
+		/>
+
+		<h2 id="default">Render prop</h2>
+
+		<p>
+			Use <code>children</code> prop as a function to receive the current
+			context.
+		</p>
+
+		<BoxCenteredOnMobile py={[3, 3, 4]} mt={4}>
+			<RenderPropExample />
+		</BoxCenteredOnMobile>
+
+		<CodeHighlight
+			code={`
+				const [value, setValue] = useState(0.25)
+
+				return (
+					<CircularInput value={value} onChange={setValue}>
+						{({ getPointFromValue }) => (
+							<>
+								<CircularTrack />
+								<CircularProgress />
+
+								<text {...getPointFromValue()} dx="30" dy="0.3em">
+									wee!
+								</text>
+
+								<CircularThumb />
+							</>
+						)}
+					</CircularInput>
+				)
+			`}
+		/>
+
+		<h2 id="default">Default</h2>
+
+		<p>
+			Omitting <code>children</code> renders the default components.
+		</p>
+
+		<BoxCenteredOnMobile py={[3, 3, 4]} mt={4}>
+			<CircularInput value={0.25} />
+		</BoxCenteredOnMobile>
+
+		<CodeHighlight
+			code={`
+				<CircularInput value={0.25} />
 			`}
 		/>
 

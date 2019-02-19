@@ -25,30 +25,24 @@ export function useCircularDrag(ref: RefObject<SVGElement | null>) {
 	}
 
 	// we can't just use React for this due to needing { passive: false } to prevent touch devices scrolling
-	useEffect(
-		() => {
+	useEffect(() => {
+		if (!ref.current) return
+		addStartListeners(ref.current, handleStart)
+		return () => {
 			if (!ref.current) return
-			addStartListeners(ref.current, handleStart)
-			return () => {
-				if (!ref.current) return
-				removeStartListeners(ref.current, handleStart)
-			}
-		},
-		[ref]
-	)
+			removeStartListeners(ref.current, handleStart)
+		}
+	}, [ref])
 
-	useEffect(
-		() => {
-			if (!isDragging) return
-			addListeners(handleMove, handleEnd)
-			return () => {
-				removeListeners(handleMove, handleEnd)
-			}
-		},
-		[isDragging]
-	)
+	useEffect(() => {
+		if (!isDragging) return
+		addListeners(handleMove, handleEnd)
+		return () => {
+			removeListeners(handleMove, handleEnd)
+		}
+	}, [isDragging])
 
-	return
+	return { isDragging }
 }
 
 function addStartListeners(

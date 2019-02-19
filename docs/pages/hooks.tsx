@@ -31,6 +31,8 @@ export default () => (
 					value,						// current value
 					radius,						// radius in px
 					center,						// {x,y} of center
+					isFocused,					// is input focused state
+					setFocused,					// set input focused state
 					onChange,					// onChange handler
 					getPointFromValue, 			// util: returns {x,y} of current value
 					getValueFromPointerEvent, 	// util: returns the nearest value to the given pointer event
