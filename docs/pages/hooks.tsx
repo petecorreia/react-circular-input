@@ -16,13 +16,13 @@ export default () => (
 		<h2>useCircularInputContext</h2>
 
 		<p>
-			Gives you access to the same context used by the components so you can
-			create custom ones. 🙂
+			Gives you access to the same context used by the components so you can{' '}
+			<strong>create custom ones</strong>. 🙂
 		</p>
 
 		<p>
-			You get access to key computed values and utility functions that should be
-			enough to build any custom component.
+			It returns computed values and utility functions that should be enough to
+			build any custom component.
 		</p>
 
 		<CodeHighlight
@@ -55,6 +55,10 @@ export default () => (
 		/>
 
 		<h2>useCircularDrag</h2>
+
+		<p>
+			Useful to <strong>make custom elements an input to dragging</strong>.
+		</p>
 
 		<p>
 			Adds event listeners to an element ref to fire the{' '}

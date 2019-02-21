@@ -11,7 +11,7 @@ import {
 } from '../../src'
 import styled from 'styled-components'
 
-const FullFeaturedExample = () => {
+const DefaultExample = () => {
 	const [value, setValue] = useState(0.25)
 	return (
 		<CircularInput value={value} onChange={setValue}>
@@ -169,14 +169,14 @@ export default () => (
 			/>
 		</a>
 
-		<h2 id="full-featured">Full featured</h2>
+		<h2 id="default">Default</h2>
 
 		<p>
 			An example of using the 3 components included with their default styling.
 		</p>
 
 		<BoxCenteredOnMobile py={[3, 3, 4]} mt={4}>
-			<FullFeaturedExample />
+			<DefaultExample />
 		</BoxCenteredOnMobile>
 
 		<CodeHighlight
@@ -374,22 +374,6 @@ export default () => (
 						)}
 					</CircularInput>
 				)
-			`}
-		/>
-
-		<h2 id="default">Default</h2>
-
-		<p>
-			Omitting <code>children</code> renders the default components.
-		</p>
-
-		<BoxCenteredOnMobile py={[3, 3, 4]} mt={4}>
-			<CircularInput value={0.25} />
-		</BoxCenteredOnMobile>
-
-		<CodeHighlight
-			code={`
-				<CircularInput value={0.25} />
 			`}
 		/>
 
