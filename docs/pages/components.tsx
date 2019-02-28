@@ -7,6 +7,7 @@ import {
 	CircularThumb,
 	CircularTrack,
 } from '../../src'
+import SEO from '../components/SEO'
 
 const CircularInputExample = () => {
 	const [value, setValue] = useState(0.25)
@@ -39,6 +40,8 @@ const CircularTrackExample = () => (
 
 export default () => (
 	<>
+		<SEO />
+
 		<h2>CircularInput</h2>
 
 		<p>Provides all the logic and context for the children components.</p>

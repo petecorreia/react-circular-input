@@ -1,8 +1,11 @@
 import React from 'react'
 import { Lead, CodeHighlight } from 'tsx-docs'
+import SEO from '../components/SEO'
 
 export default () => (
 	<>
+		<SEO />
+
 		<Lead>
 			We provide Hooks for implementing your own interactive custom components!
 			🎉

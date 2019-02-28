@@ -5,6 +5,7 @@ import { CircularInput } from '../../src'
 import styled from 'styled-components'
 import { TSXDocsTheme } from 'tsx-docs/dist/types'
 import BoxCenteredOnMobile from '../components/BoxCenteredOnMobile'
+import SEO from '../components/SEO'
 
 const Example = () => {
 	const [value, setValue] = useState(0.25)
@@ -13,6 +14,8 @@ const Example = () => {
 
 export default () => (
 	<>
+		<SEO />
+
 		<Lead>React components for easily composing a circular range input</Lead>
 
 		<BoxCenteredOnMobile py={[3, 3, 4]} mt={4}>

@@ -10,9 +10,12 @@ import {
 	useCircularInputContext,
 } from '../../src'
 import styled from 'styled-components'
+import SEO from '../components/SEO'
 
 export default () => (
 	<>
+		<SEO />
+
 		<Lead>
 			A declarative and composable approach means we have a lot of flexibility,
 			here are a few examples that showcase it.
