@@ -41,6 +41,9 @@ export default () => (
 				<a href="#min-max-scale">Min, Max & Scale</a>
 			</li>
 			<li>
+				<a href="#steps">Steps</a>
+			</li>
+			<li>
 				<a href="#readonly">Readonly</a>
 			</li>
 			<li>
@@ -270,6 +273,40 @@ export default () => (
 						{/* range value in center */}
 						<text x={100} y={100} textAnchor="middle" dy="0.3em" fontWeight="bold">
 							{Math.round(rangeValue)}%
+						</text>
+					</CircularInput>
+				)
+			`}
+		/>
+
+		<h2 id="steps">Steps</h2>
+
+		<p>
+			You're in full control of the value so it's easy to introduce the stepped
+			interaction.
+		</p>
+
+		<BoxCenteredOnMobile py={[3, 3, 4]} mt={4}>
+			<SteppedExample />
+		</BoxCenteredOnMobile>
+
+		<CodeHighlight
+			code={`
+				const [value, setValue] = useState(0.25)
+
+				const stepValue = v => Math.round(v * 10) / 10
+
+				return (
+					<CircularInput
+						value={stepValue(value)}
+						onChange={v => setValue(stepValue(v))}
+					>
+						<CircularTrack />
+						<CircularProgress />
+						<CircularThumb />
+
+						<text x={100} y={100} textAnchor="middle" dy="0.3em" fontWeight="bold">
+							{Math.round(stepValue(value) * 100)}%
 						</text>
 					</CircularInput>
 				)
@@ -518,6 +555,25 @@ function MinMaxScaleExample() {
 			{/* range value in center */}
 			<text x={100} y={100} textAnchor="middle" dy="0.3em" fontWeight="bold">
 				{Math.round(rangeValue)}%
+			</text>
+		</CircularInput>
+	)
+}
+
+function SteppedExample() {
+	const [value, setValue] = useState(0.25)
+	const stepValue = v => Math.round(v * 10) / 10
+	return (
+		<CircularInput
+			value={stepValue(value)}
+			onChange={v => setValue(stepValue(v))}
+		>
+			<CircularTrack />
+			<CircularProgress />
+			<CircularThumb />
+
+			<text x={100} y={100} textAnchor="middle" dy="0.3em" fontWeight="bold">
+				{Math.round(stepValue(value) * 100)}%
 			</text>
 		</CircularInput>
 	)
