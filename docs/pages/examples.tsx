@@ -230,11 +230,6 @@ export default () => (
 			much more with simple code.
 		</p>
 
-		<p>
-			There are no props for min/max/etc as you can easily achieve these and
-			much more with simple code.
-		</p>
-
 		<BoxCenteredOnMobile py={[3, 3, 4]} mt={4}>
 			<MinMaxScaleExample />
 		</BoxCenteredOnMobile>
