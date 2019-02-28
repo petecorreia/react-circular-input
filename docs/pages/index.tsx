@@ -101,5 +101,10 @@ export default () => (
 				</Link>
 			</li>
 		</ul>
+
+		<Box as="p" mt="4">
+			This documentation site is powered by{' '}
+			<a href="https://tsx-docs.now.sh">TSX Docs</a>.
+		</Box>
 	</>
 )
