@@ -8,13 +8,19 @@ const SEO = () => (
 		<meta name="twitter:site" content="@petecorreia" />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
-		<meta name="twitter:image" content="/static/social-card.png" />
+		<meta
+			name="twitter:image"
+			content="https://react-circular-input.now.sh/static/social-card.png"
+		/>
 
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content="https://react-circular-input.now.sh" />
-		<meta property="og:image" content="/static/social-card.png" />
+		<meta
+			property="og:image"
+			content="https://react-circular-input.now.sh/static/social-card.png"
+		/>
 	</Head>
 )
 
