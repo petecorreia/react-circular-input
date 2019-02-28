@@ -18,8 +18,35 @@ export default () => (
 			here are a few examples that showcase it.
 		</Lead>
 
+		<ul style={{ margin: '32px 0' }}>
+			<li>
+				<a href="#default">Default</a>
+			</li>
+			<li>
+				<a href="#animated">Animated</a>
+			</li>
+			<li>
+				<a href="#styled">Styled</a>
+			</li>
+			<li>
+				<a href="#custom-component">Custom Component</a>
+			</li>
+			<li>
+				<a href="#progress">Progress</a>
+			</li>
+			<li>
+				<a href="#min-max-scale">Min, Max & Scale</a>
+			</li>
+			<li>
+				<a href="#readonly">Readonly</a>
+			</li>
+			<li>
+				<a href="#render-prop">Render Prop</a>
+			</li>
+		</ul>
+
 		<p>
-			Play around with the{' '}
+			Or play around with the{' '}
 			<a
 				href="https://codesandbox.io/s/ypwq61rnxz?hidenavigation=1&view=preview"
 				target="_blank"
@@ -127,7 +154,7 @@ export default () => (
 			`}
 		/>
 
-		<h2 id="custom">Custom Component</h2>
+		<h2 id="custom-component">Custom Component</h2>
 
 		<p>
 			Using the provided{' '}
@@ -268,7 +295,7 @@ export default () => (
 			`}
 		/>
 
-		<h2 id="default">Render prop</h2>
+		<h2 id="render-prop">Render Prop</h2>
 
 		<p>
 			Use <code>children</code> prop as a function to receive the current
