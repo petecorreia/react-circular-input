@@ -47,6 +47,15 @@ export default () => (
 		<p>Provides all the logic and context for the children components.</p>
 
 		<p>
+			<strong>The value is always between 0 and 1</strong>. This makes all
+			interpolations and customisations easy to calculate. Check out the{' '}
+			<Link href="/examples">
+				<a>Examples</a>
+			</Link>
+			.
+		</p>
+
+		<p>
 			Using this component by itself is not recommended as the library is most
 			useful when it's used with composition.
 		</p>
