@@ -34,7 +34,7 @@
 		"@types/styled-components": "^4.1.10",
 		"next": "^8.0.3",
 		"prettier": "^1.15.3",
-		"react": "16.8.1",
+		"react": "16.8.6",
 		"react-dom": "16.8.1",
 		"react-spring": "^8.0.7",
 		"rebass": "^3.0.1",
