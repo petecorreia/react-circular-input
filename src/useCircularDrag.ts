@@ -1,23 +1,23 @@
-import { MouseEvent, TouchEvent, useEffect, RefObject, useState } from 'react'
+import { MouseEvent, TouchEvent, useEffect, RefObject, useState, useCallback } from 'react'
 import { useCircularInputContext } from './'
 
 export function useCircularDrag(ref: RefObject<SVGElement | null>) {
 	const { onChange, getValueFromPointerEvent } = useCircularInputContext()
 	const [isDragging, setDragging] = useState(false)
 
-	const handleStart = (e: MouseEvent | TouchEvent) => {
+	const handleStart = useCallback((e: MouseEvent | TouchEvent) => {
 		if (!onChange) return
 		stopEvent(e)
 		setDragging(true)
 		const nearestValue = getValueFromPointerEvent(e)
 		onChange(nearestValue)
-	}
+	}, [onChange, stopEvent, setDragging, getValueFromPointerEvent])
 
-	const handleMove = (e: MouseEvent | TouchEvent) => {
+	const handleMove = useCallback((e: MouseEvent | TouchEvent) => {
 		stopEvent(e)
 		const nearestValue = getValueFromPointerEvent(e)
 		onChange(nearestValue)
-	}
+	}, [onChange, stopEvent, getValueFromPointerEvent])
 
 	const handleEnd = (e: MouseEvent | TouchEvent) => {
 		stopEvent(e)
@@ -32,7 +32,7 @@ export function useCircularDrag(ref: RefObject<SVGElement | null>) {
 			if (!ref.current) return
 			removeStartListeners(ref.current, handleStart)
 		}
-	}, [ref])
+	}, [ref, handleStart])
 
 	useEffect(() => {
 		if (!isDragging) return
@@ -40,7 +40,7 @@ export function useCircularDrag(ref: RefObject<SVGElement | null>) {
 		return () => {
 			removeListeners(handleMove, handleEnd)
 		}
-	}, [isDragging])
+	}, [isDragging, handleMove])
 
 	return { isDragging }
 }
