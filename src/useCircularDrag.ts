@@ -11,13 +11,13 @@ export function useCircularDrag(ref: RefObject<SVGElement | null>) {
 		setDragging(true)
 		const nearestValue = getValueFromPointerEvent(e)
 		onChange(nearestValue)
-	}, [onChange])
+	}, [onChange, stopEvent, setDragging, getValueFromPointerEvent])
 
 	const handleMove = useCallback((e: MouseEvent | TouchEvent) => {
 		stopEvent(e)
 		const nearestValue = getValueFromPointerEvent(e)
 		onChange(nearestValue)
-	}, [onChange])
+	}, [onChange, stopEvent, getValueFromPointerEvent])
 
 	const handleEnd = (e: MouseEvent | TouchEvent) => {
 		stopEvent(e)
