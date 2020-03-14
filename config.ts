@@ -6,19 +6,23 @@ const config = {
 	routes: [
 		{
 			name: 'Examples',
-			path: '/examples'
+			path: '/examples',
+			isExternal: false
 		},
 		{
 			name: 'Components',
-			path: '/components'
+			path: '/components',
+			isExternal: false
 		},
 		{
 			name: 'Hooks',
-			path: '/hooks'
+			path: '/hooks',
+			isExternal: false
 		},
 		{
 			name: 'Github',
-			path: 'https://github.com/petecorreia/react-circular-input'
+			path: 'https://github.com/petecorreia/react-circular-input',
+			isExternal: true
 		}
 	],
 	theme: {

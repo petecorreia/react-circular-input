@@ -14,7 +14,7 @@ const Error: NextPage<Props> = ({ statusCode }) => (
 			<>
 				<p>An error occurred, the page doesn&apos;t seem to exist.</p>
 				<hr />
-				<Link href="/" prefetch>
+				<Link href="/">
 					<a>Let&apos;s go back to the beginning?</a>
 				</Link>
 			</>

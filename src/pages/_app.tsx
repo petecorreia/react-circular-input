@@ -1,5 +1,5 @@
 import React, { FunctionComponent, ComponentProps, useState } from 'react'
-import { Container, AppProps } from 'next/app'
+import { AppProps } from 'next/app'
 import Head from 'next/head'
 import Link from 'next/link'
 import styled, { ThemeProvider, css } from 'styled-components'
@@ -169,49 +169,57 @@ function App({ Component, pageProps, router }: AppProps) {
 
 	return (
 		<ThemeProvider theme={theme}>
-			<Container>
-				<GlobalStyle />
-				<Main
-					mx="auto"
-					flexDirection="column"
-					px={[4, 5, 5, 6]}
-					pt={[4, 5, 5, 6]}
-					pb={4}
-				>
-					<Head>
-						<title>{pageTitle}</title>
-						<meta name="description" content={description} />
-					</Head>
+			<GlobalStyle />
+			<Main
+				mx="auto"
+				flexDirection="column"
+				px={[4, 5, 5, 6]}
+				pt={[4, 5, 5, 6]}
+				pb={4}
+			>
+				<Head>
+					<title>{pageTitle}</title>
+					<meta name="description" content={description} />
+				</Head>
 
-					<Content>
-						<Box
-							as="header"
-							width={[1, 1, 1 / 3]}
-							pr={[0, 0, 4, 5]}
-							className="app-header"
-						>
-							<Title className="app-title">
-								<MenuIcon
-									isOpen={isMenuOpen}
-									onClick={() => setMenuOpen(!isMenuOpen)}
-								>
-									<HamburgerIcon />
-								</MenuIcon>
+				<Content>
+					<Box
+						as="header"
+						width={[1, 1, 1 / 3]}
+						pr={[0, 0, 4, 5]}
+						className="app-header"
+					>
+						<Title className="app-title">
+							<MenuIcon
+								isOpen={isMenuOpen}
+								onClick={() => setMenuOpen(!isMenuOpen)}
+							>
+								<HamburgerIcon />
+							</MenuIcon>
 
-								<Link href="/" prefetch>
-									<a onClick={() => setMenuOpen(false)}>
-										{title}
-									</a>
-								</Link>
-							</Title>
+							<Link href="/">
+								<a onClick={() => setMenuOpen(false)}>
+									{title}
+								</a>
+							</Link>
+						</Title>
 
-							<Nav isOpen={isMenuOpen} className="app-nav">
-								{routes.map(({ name, path }) => (
-									<Link
+						<Nav isOpen={isMenuOpen} className="app-nav">
+							{routes.map(({ name, path, isExternal }) =>
+								isExternal ? (
+									<HeaderLink
 										key={path}
 										href={path}
-										prefetch={path.startsWith('/')}
+										isActive={
+											!!activeRoute &&
+											activeRoute.path === path
+										}
+										onClick={() => setMenuOpen(false)}
 									>
+										{name}
+									</HeaderLink>
+								) : (
+									<Link key={path} href={path}>
 										<HeaderLink
 											isActive={
 												!!activeRoute &&
@@ -223,29 +231,29 @@ function App({ Component, pageProps, router }: AppProps) {
 											{name}
 										</HeaderLink>
 									</Link>
-								))}
-							</Nav>
-						</Box>
+								)
+							)}
+						</Nav>
+					</Box>
 
-						<ContentInner width={[1, 1, 2 / 3]} pt={[4, 4, 0, 0]}>
-							<Component {...pageProps} />
-						</ContentInner>
-					</Content>
+					<ContentInner width={[1, 1, 2 / 3]} pt={[4, 4, 0, 0]}>
+						<Component {...pageProps} />
+					</ContentInner>
+				</Content>
 
-					<Footer pt={4} className="app-footer">
-						© {new Date().getFullYear()}{' '}
-						{author ? (
-							authorURL ? (
-								<a href={authorURL}>{author}</a>
-							) : (
-								author
-							)
+				<Footer pt={4} className="app-footer">
+					© {new Date().getFullYear()}{' '}
+					{author ? (
+						authorURL ? (
+							<a href={authorURL}>{author}</a>
 						) : (
-							title
-						)}
-					</Footer>
-				</Main>
-			</Container>
+							author
+						)
+					) : (
+						title
+					)}
+				</Footer>
+			</Main>
 		</ThemeProvider>
 	)
 }
