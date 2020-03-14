@@ -1,9 +1,9 @@
-import React, { SVGProps } from 'react'
+import React from 'react'
 import { useCircularInputContext, CircularTrack } from '.'
 import { Props as CircularTrackProps } from './CircularTrack'
 import { DEG_360_IN_RAD } from './utils'
 
-type Props = SVGProps<SVGCircleElement> &
+type Props = JSX.IntrinsicElements['circle'] &
 	CircularTrackProps & {
 		// disallow some props
 		strokeDasharray?: undefined
@@ -12,7 +12,7 @@ type Props = SVGProps<SVGCircleElement> &
 	}
 
 const defaultProps = {
-	stroke: '#3D99FF',
+	stroke: '#3D99FF'
 }
 
 export const CircularProgress = (props: Props) => {

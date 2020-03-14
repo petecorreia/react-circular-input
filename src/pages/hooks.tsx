@@ -1,14 +1,14 @@
 import React from 'react'
-import { Lead, CodeHighlight } from 'tsx-docs'
-import SEO from '../components/SEO'
+import CodeHighlight from '../shared/CodeHighlight'
+import Lead from '../shared/Lead'
+import SEO from '../shared/SEO'
 
-export default () => (
+const Hooks = () => (
 	<>
 		<SEO />
 
 		<Lead>
-			We provide Hooks for implementing your own interactive custom components!
-			🎉
+			We provide Hooks for implementing your own custom components! 🎉
 		</Lead>
 
 		<p>
@@ -19,13 +19,13 @@ export default () => (
 		<h2>useCircularInputContext</h2>
 
 		<p>
-			Gives you access to the same context used by the components so you can{' '}
-			<strong>create custom ones</strong>. 🙂
+			Gives you access to the same context used by the components so you
+			can <strong>create custom ones</strong>. 🙂
 		</p>
 
 		<p>
-			It returns computed values and utility functions that should be enough to
-			build any custom component.
+			It returns computed values and utility functions that should be
+			enough to build any custom component.
 		</p>
 
 		<CodeHighlight
@@ -60,18 +60,19 @@ export default () => (
 		<h2>useCircularDrag</h2>
 
 		<p>
-			Useful to <strong>make custom elements an input to dragging</strong>.
+			Useful to <strong>make custom elements an input to dragging</strong>
+			.
 		</p>
 
 		<p>
 			Adds event listeners to an element ref to fire the{' '}
-			<code>CircularThumb</code> <code>onChange</code> on click and drag with
-			the nearest value.
+			<code>CircularThumb</code> <code>onChange</code> on click and drag
+			with the nearest value.
 		</p>
 
 		<p>
-			Adds/removes listeners as needed so you don't have to worry about that
-			complexity.
+			Adds/removes listeners as needed so you don&apos;t have to worry
+			about that complexity.
 		</p>
 
 		<p>
@@ -106,3 +107,5 @@ export default () => (
 		/>
 	</>
 )
+
+export default Hooks

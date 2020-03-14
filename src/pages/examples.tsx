@@ -1,24 +1,26 @@
 import React, { useState, useEffect } from 'react'
+import styled from 'styled-components'
 import { Spring, config } from 'react-spring/renderprops.cjs'
-import { CodeHighlight, Lead, Link } from 'tsx-docs'
-import BoxCenteredOnMobile from '../components/BoxCenteredOnMobile'
+import Link from 'next/link'
+import CodeHighlight from '../shared/CodeHighlight'
+import Lead from '../shared/Lead'
+import BoxCenteredOnMobile from '../shared/BoxCenteredOnMobile'
+import SEO from '../shared/SEO'
 import {
 	CircularInput,
 	CircularTrack,
 	CircularProgress,
 	CircularThumb,
-	useCircularInputContext,
-} from '../../src'
-import styled from 'styled-components'
-import SEO from '../components/SEO'
+	useCircularInputContext
+} from '../'
 
-export default () => (
+const Examples = () => (
 	<>
 		<SEO />
 
 		<Lead>
-			A declarative and composable approach means we have a lot of flexibility,
-			here are a few examples that showcase it.
+			A declarative and composable approach means we have a lot of
+			flexibility, here are a few examples that showcase it.
 		</Lead>
 
 		<ul style={{ margin: '32px 0' }}>
@@ -56,6 +58,7 @@ export default () => (
 			<a
 				href="https://codesandbox.io/s/ypwq61rnxz?hidenavigation=1&view=preview"
 				target="_blank"
+				rel="noopener noreferrer"
 			>
 				<strong>examples at CodeSandbox</strong>
 			</a>
@@ -64,6 +67,7 @@ export default () => (
 		<a
 			href="https://codesandbox.io/s/ypwq61rnxz?hidenavigation=1&view=preview"
 			target="_blank"
+			rel="noopener noreferrer"
 		>
 			<img
 				alt="Edit react-circular-input"
@@ -74,7 +78,8 @@ export default () => (
 		<h2 id="default">Default</h2>
 
 		<p>
-			An example of using the 3 components included with their default styling.
+			An example of using the 3 components included with their default
+			styling.
 		</p>
 
 		<BoxCenteredOnMobile py={[3, 3, 4]} mt={4}>
@@ -99,7 +104,8 @@ export default () => (
 
 		<p>
 			You can use libraries like{' '}
-			<a href="https://www.react-spring.io/">react-spring</a> to add animation.
+			<a href="https://www.react-spring.io/">react-spring</a> to add
+			animation.
 		</p>
 
 		<BoxCenteredOnMobile py={[3, 3, 4]} mt={4}>
@@ -133,8 +139,8 @@ export default () => (
 
 		<p>
 			<code>CircularTrack</code>, <code>CircularProgress</code> and{' '}
-			<code>CircularThumb</code> are just SVG <code>{`<circle />`}</code> so you
-			can also just tweak most (see Component docs) attributes 💅
+			<code>CircularThumb</code> are just SVG <code>{`<circle />`}</code>{' '}
+			so you can also just tweak most (see Component docs) attributes 💅
 		</p>
 
 		<BoxCenteredOnMobile py={[3, 3, 4]} mt={4}>
@@ -226,8 +232,8 @@ export default () => (
 		<h2 id="min-max-scale">Min, Max & Scale</h2>
 
 		<p>
-			There are no props for min/max/etc as you can easily achieve these and
-			much more with simple code.
+			There are no props for min/max/etc as you can easily achieve these
+			and much more with simple code.
 		</p>
 
 		<BoxCenteredOnMobile py={[3, 3, 4]} mt={4}>
@@ -277,8 +283,8 @@ export default () => (
 		<h2 id="steps">Steps</h2>
 
 		<p>
-			You're in full control of the value so it's easy to introduce the stepped
-			interaction.
+			You&apos;re in full control of the value so it&apos;s easy to
+			introduce the stepped interaction.
 		</p>
 
 		<BoxCenteredOnMobile py={[3, 3, 4]} mt={4}>
@@ -365,8 +371,8 @@ export default () => (
 		/>
 
 		<p>
-			It might be a good time to dive deep into customisation with components
-			and hooks:
+			It might be a good time to dive deep into customisation with
+			components and hooks:
 		</p>
 
 		<ul>
@@ -410,7 +416,9 @@ function ProgressExample() {
 			{props => (
 				<CircularInput value={props.value}>
 					<CircularTrack strokeWidth={5} stroke="#eee" />
-					<CircularProgress stroke={`hsl(${props.value * 100}, 100%, 50%)`} />
+					<CircularProgress
+						stroke={`hsl(${props.value * 100}, 100%, 50%)`}
+					/>
 				</CircularInput>
 			)}
 		</Spring>
@@ -548,7 +556,13 @@ function MinMaxScaleExample() {
 			<CircularThumb />
 
 			{/* range value in center */}
-			<text x={100} y={100} textAnchor="middle" dy="0.3em" fontWeight="bold">
+			<text
+				x={100}
+				y={100}
+				textAnchor="middle"
+				dy="0.3em"
+				fontWeight="bold"
+			>
 				{Math.round(rangeValue)}%
 			</text>
 		</CircularInput>
@@ -567,9 +581,17 @@ function SteppedExample() {
 			<CircularProgress />
 			<CircularThumb />
 
-			<text x={100} y={100} textAnchor="middle" dy="0.3em" fontWeight="bold">
+			<text
+				x={100}
+				y={100}
+				textAnchor="middle"
+				dy="0.3em"
+				fontWeight="bold"
+			>
 				{Math.round(stepValue(value) * 100)}%
 			</text>
 		</CircularInput>
 	)
 }
+
+export default Examples

@@ -1,22 +1,23 @@
 import React, { useState } from 'react'
-import { Lead, CodeHighlight, Link } from 'tsx-docs'
-import { Box, Flex } from 'rebass'
-import { CircularInput } from '../../src'
-import styled from 'styled-components'
-import { TSXDocsTheme } from 'tsx-docs/dist/types'
-import BoxCenteredOnMobile from '../components/BoxCenteredOnMobile'
-import SEO from '../components/SEO'
+import Link from 'next/link'
+import CodeHighlight from '../shared/CodeHighlight'
+import Lead from '../shared/Lead'
+import BoxCenteredOnMobile from '../shared/BoxCenteredOnMobile'
+import SEO from '../shared/SEO'
+import { CircularInput } from '../'
 
 const Example = () => {
 	const [value, setValue] = useState(0.25)
 	return <CircularInput value={value} onChange={v => setValue(v)} />
 }
 
-export default () => (
+const Home = () => (
 	<>
 		<SEO />
 
-		<Lead>React components for easily composing a circular range input</Lead>
+		<Lead>
+			React components for easily composing a circular range input
+		</Lead>
 
 		<BoxCenteredOnMobile py={[3, 3, 4]} mt={4}>
 			<Example />
@@ -55,8 +56,8 @@ export default () => (
 		/>
 
 		<p>
-			There's a lot more you can do with the library. From a simple gauge to a
-			fully custom and animated circular input range.
+			There&apos;s a lot more you can do with the library. From a simple
+			gauge to a fully custom and animated circular input range.
 		</p>
 
 		<p>
@@ -64,6 +65,7 @@ export default () => (
 			<a
 				href="https://codesandbox.io/s/ypwq61rnxz?hidenavigation=1&view=preview"
 				target="_blank"
+				rel="noopener noreferrer"
 			>
 				<strong>examples at CodeSandbox</strong>
 			</a>
@@ -72,6 +74,7 @@ export default () => (
 		<a
 			href="https://codesandbox.io/s/ypwq61rnxz?hidenavigation=1&view=preview"
 			target="_blank"
+			rel="noopener noreferrer"
 		>
 			<img
 				alt="Edit react-circular-input"
@@ -80,8 +83,8 @@ export default () => (
 		</a>
 
 		<p>
-			A declarative and composable approach means we have a lot of flexibility,
-			check out the other pages for how to go further!
+			A declarative and composable approach means we have a lot of
+			flexibility, check out the other pages for how to go further!
 		</p>
 
 		<ul>
@@ -101,10 +104,7 @@ export default () => (
 				</Link>
 			</li>
 		</ul>
-
-		<Box as="p" mt="4">
-			This documentation site is powered by{' '}
-			<a href="https://tsx-docs.now.sh">TSX Docs</a>.
-		</Box>
 	</>
 )
+
+export default Home

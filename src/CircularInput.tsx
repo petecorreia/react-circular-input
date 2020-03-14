@@ -2,10 +2,9 @@ import React, {
 	useRef,
 	RefObject,
 	useMemo,
-	HTMLProps,
 	useCallback,
 	useState,
-	KeyboardEvent,
+	KeyboardEvent
 } from 'react'
 import {
 	Coordinates,
@@ -13,23 +12,22 @@ import {
 	valueToAngle,
 	calculateNearestValueToPoint,
 	getElementPosition,
-	absPos,
-	Weaken,
+	absPos
 } from './utils'
 import {
 	CircularInputContext,
-	CircularInputProvider,
+	CircularInputProvider
 } from './CircularInputContext'
 import { CircularTrack } from './CircularTrack'
 import { CircularProgress } from './CircularProgress'
 import { CircularThumb } from './CircularThumb'
 
-type DefaultHTMLProps = HTMLProps<SVGSVGElement>
+type DefaultHTMLProps = JSX.IntrinsicElements['svg']
 
-type Props = Weaken<DefaultHTMLProps, 'onChange'> & {
+type Props = Omit<DefaultHTMLProps, 'onChange'> & {
 	value: number
 	radius?: number
-	onChange?: (value: number) => any
+	onChange?: (value: number) => void
 	// disallow some props
 	ref?: undefined
 	width?: undefined
@@ -41,7 +39,7 @@ type Props = Weaken<DefaultHTMLProps, 'onChange'> & {
 export function CircularInput({
 	value = 0.25,
 	radius = 100,
-	onChange,
+	onChange = () => {},
 	children,
 	...props
 }: Props) {
@@ -69,9 +67,13 @@ export function CircularInput({
 
 			// arrow up, arrow right, page up, space
 			const isIncrement =
-				keyCode === 38 || keyCode === 39 || keyCode === 33 || keyCode === 32
+				keyCode === 38 ||
+				keyCode === 39 ||
+				keyCode === 33 ||
+				keyCode === 32
 			// arrow down, arrow left, page down
-			const isDecrement = keyCode === 40 || keyCode === 37 || keyCode === 34
+			const isDecrement =
+				keyCode === 40 || keyCode === 37 || keyCode === 34
 
 			if (isIncrement) {
 				onChange(Math.min(1, value + 0.1))
@@ -93,7 +95,7 @@ export function CircularInput({
 		role: 'slider',
 		onFocus: handleFocus,
 		onBlur: handleBlur,
-		onKeyDown: handleKeyDown,
+		onKeyDown: handleKeyDown
 	}
 
 	// Geometry utilities
@@ -103,7 +105,7 @@ export function CircularInput({
 			polarToCartesian({
 				center,
 				angle: valueToAngle(v || value),
-				radius,
+				radius
 			}),
 		[value, center, radius]
 	)
@@ -112,12 +114,14 @@ export function CircularInput({
 		e =>
 			calculateNearestValueToPoint({
 				point: absPos(e),
-				container: getElementPosition(containerRef.current) as Coordinates,
+				container: getElementPosition(
+					containerRef.current
+				) as Coordinates,
 				value,
 				center,
-				radius,
+				radius
 			}),
-		[containerRef.current, value, center, radius]
+		[value, center, radius]
 	)
 
 	// Context
@@ -131,9 +135,18 @@ export function CircularInput({
 			setFocused,
 			onChange,
 			getPointFromValue,
-			getValueFromPointerEvent,
+			getValueFromPointerEvent
 		}),
-		[value, radius, center, onChange, isFocused, setFocused]
+		[
+			value,
+			radius,
+			center,
+			onChange,
+			isFocused,
+			setFocused,
+			getPointFromValue,
+			getValueFromPointerEvent
+		]
 	)
 
 	const handleClick = useCallback(
@@ -150,7 +163,7 @@ export function CircularInput({
 		outline: 'none',
 		...(props.style || {}),
 		touchAction: 'manipulation',
-		WebkitTapHighlightColor: 'rgba(0,0,0,0)',
+		WebkitTapHighlightColor: 'rgba(0,0,0,0)'
 	}
 
 	return (

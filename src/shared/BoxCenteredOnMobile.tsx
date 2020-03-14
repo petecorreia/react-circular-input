@@ -1,12 +1,11 @@
-import React from 'react'
 import styled from 'styled-components'
 import { Flex } from 'rebass'
-import { TSXDocsTheme } from 'tsx-docs/dist/types'
+import { Theme } from '../../config'
 
 const BoxCenteredOnMobile = styled(Flex)`
 	justify-content: center;
 
-	@media screen and (min-width: ${({ theme }: { theme: TSXDocsTheme }) =>
+	@media screen and (min-width: ${({ theme }: { theme: Theme }) =>
 			theme.breakpoints[1]}) {
 		justify-content: inherit;
 	}

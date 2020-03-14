@@ -1,7 +1,7 @@
 export { CircularInput } from './CircularInput'
 export {
 	useCircularInputContext,
-	CircularInputProvider,
+	CircularInputProvider
 } from './CircularInputContext'
 export { useCircularDrag } from './useCircularDrag'
 export { CircularProgress } from './CircularProgress'

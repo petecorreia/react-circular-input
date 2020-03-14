@@ -8,16 +8,10 @@ export type Coordinates = {
 	y: number
 }
 
-// weakens a type, useful for unions that override props
-// see: https://github.com/Microsoft/TypeScript/issues/3402#issuecomment-385975990
-export type Weaken<T, K extends keyof T> = {
-	[P in keyof T]: P extends K ? any : T[P]
-}
-
 export function polarToCartesian({
 	center,
 	angle,
-	radius,
+	radius
 }: {
 	center: Coordinates
 	angle: number
@@ -25,7 +19,7 @@ export function polarToCartesian({
 }): Coordinates {
 	return {
 		x: center.x + Math.sin(angle) * radius,
-		y: center.y + Math.cos(angle) * radius,
+		y: center.y + Math.cos(angle) * radius
 	}
 }
 
@@ -38,7 +32,8 @@ export function degrees(rad: number) {
 }
 
 export function matrixScale(scale: number, x: number, y: number) {
-	return `matrix(${scale}, 0, 0, ${scale}, ${x - scale * x}, ${y - scale * y})`
+	return `matrix(${scale}, 0, 0, ${scale}, ${x - scale * x}, ${y -
+		scale * y})`
 }
 
 export function clamp(min: number, max: number, value: number) {
@@ -50,7 +45,7 @@ export function calculateNearestValueToPoint({
 	container: { x: containerX, y: containerY },
 	point: { x: pointX, y: pointY },
 	radius,
-	value,
+	value
 }: {
 	center: Coordinates
 	container: Coordinates
@@ -60,12 +55,12 @@ export function calculateNearestValueToPoint({
 }) {
 	const radialPosition = {
 		x: pointX - containerX - centerX,
-		y: -(pointY - containerY - centerY),
+		y: -(pointY - containerY - centerY)
 	}
 	const valuePosition = polarToCartesian({
 		center: { x: 0, y: 0 },
 		angle: valueToAngle(value),
-		radius,
+		radius
 	})
 	const deltaTheta = calcAngleDiff(
 		radialPosition.x,
@@ -94,15 +89,19 @@ export function absPos(e: TouchEvent | MouseEvent) {
 	const touchEvent = (e as TouchEvent).touches && (e as TouchEvent)
 	if (touchEvent) {
 		return {
-			x: touchEvent.touches[0].pageX - (window.scrollX || window.pageXOffset),
-			y: touchEvent.touches[0].pageY - (window.scrollY || window.pageYOffset),
+			x:
+				touchEvent.touches[0].pageX -
+				(window.scrollX || window.pageXOffset),
+			y:
+				touchEvent.touches[0].pageY -
+				(window.scrollY || window.pageYOffset)
 		}
 	}
 	const mouseEvent = (e as MouseEvent).pageX && (e as MouseEvent)
 	if (mouseEvent) {
 		return {
 			x: mouseEvent.pageX - (window.scrollX || window.pageXOffset),
-			y: mouseEvent.pageY - (window.scrollY || window.pageYOffset),
+			y: mouseEvent.pageY - (window.scrollY || window.pageYOffset)
 		}
 	}
 	throw new Error(

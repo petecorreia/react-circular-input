@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
-import { Lead, CodeHighlight, Link } from 'tsx-docs'
-import BoxCenteredOnMobile from '../components/BoxCenteredOnMobile'
+import Link from 'next/link'
+import CodeHighlight from '../shared/CodeHighlight'
+import BoxCenteredOnMobile from '../shared/BoxCenteredOnMobile'
+import SEO from '../shared/SEO'
 import {
 	CircularInput,
 	CircularProgress,
 	CircularThumb,
-	CircularTrack,
-} from '../../src'
-import SEO from '../components/SEO'
+	CircularTrack
+} from '../'
 
 const CircularInputExample = () => {
 	const [value, setValue] = useState(0.25)
@@ -38,7 +39,7 @@ const CircularTrackExample = () => (
 	</CircularInput>
 )
 
-export default () => (
+const Components = () => (
 	<>
 		<SEO />
 
@@ -56,8 +57,8 @@ export default () => (
 		</p>
 
 		<p>
-			Using this component by itself is not recommended as the library is most
-			useful when it's used with composition.
+			Using this component by itself is not recommended as the library is
+			most useful when it&apos;s used with composition.
 		</p>
 
 		<CodeHighlight
@@ -204,3 +205,5 @@ export default () => (
 		</ul>
 	</>
 )
+
+export default Components

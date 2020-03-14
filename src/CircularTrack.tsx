@@ -1,8 +1,8 @@
-import React, { SVGProps, useRef } from 'react'
+import React, { useRef } from 'react'
 import { useCircularInputContext } from './'
 import { useCircularDrag } from './useCircularDrag'
 
-export type Props = SVGProps<SVGCircleElement> & {
+export type Props = JSX.IntrinsicElements['circle'] & {
 	// disallow some props
 	ref?: undefined
 	cx?: undefined
@@ -14,7 +14,7 @@ export const defaultProps = {
 	stroke: '#CEE0F5',
 	fill: 'none',
 	strokeWidth: 20,
-	strokeLinecap: 'round',
+	strokeLinecap: 'round'
 }
 
 export const CircularTrack = ({ strokeWidth, ...props }: Props) => {
