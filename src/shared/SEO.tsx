@@ -10,7 +10,7 @@ const SEO = () => (
 		<meta name="twitter:description" content={config.description} />
 		<meta
 			name="twitter:image"
-			content="https://react-circular-input.now.sh/static/social-card.png"
+			content="https://react-circular-input.now.sh/social-card.png"
 		/>
 
 		<meta property="og:type" content="website" />
@@ -19,7 +19,7 @@ const SEO = () => (
 		<meta property="og:url" content="https://react-circular-input.now.sh" />
 		<meta
 			property="og:image"
-			content="https://react-circular-input.now.sh/static/social-card.png"
+			content="https://react-circular-input.now.sh/social-card.png"
 		/>
 	</Head>
 )
