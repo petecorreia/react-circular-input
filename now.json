@@ -16,6 +16,5 @@
 			"src": "^(.*)$",
 			"dest": "docs$1"
 		}
-	],
-	"regions": ["gru", "sfo", "bru"]
+	]
 }
