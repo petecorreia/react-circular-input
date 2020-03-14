@@ -26,7 +26,7 @@ import {
 	CircularInput,
 	CircularTrack,
 	CircularProgress,
-	CircularThumb,
+	CircularThumb
 } from 'react-circular-input'
 
 export default () => {
@@ -54,9 +54,9 @@ A declarative and composable approach means we have a lot of flexibility, check 
 
 Full documentation at **[react-circular-input.now.sh](https://react-circular-input.now.sh)**.
 
-- [Examples](https://react-circular-input.now.sh/examples)
-- [Components](https://react-circular-input.now.sh/components)
-- [Hooks](https://react-circular-input.now.sh/hooks)
+-   [Examples](https://react-circular-input.now.sh/examples)
+-   [Components](https://react-circular-input.now.sh/components)
+-   [Hooks](https://react-circular-input.now.sh/hooks)
 
 Enjoy! 🎉
 
@@ -67,5 +67,3 @@ Enjoy! 🎉
 [Code of Conduct](CODE_OF_CONDUCT.md)
 |
 [MIT License](LICENSE.md)
-
-_Docs powered by [tsx-docs](https://tsx-docs.now.sh)_

@@ -1,20 +1,5 @@
 {
 	"version": 2,
 	"name": "react-circular-input",
-	"alias": "react-circular-input",
-	"builds": [
-		{
-			"src": "docs/tsx-docs.config.js",
-			"use": "petecorreia/now-tsx-docs",
-			"config": {
-				"packageJson": "package.json"
-			}
-		}
-	],
-	"routes": [
-		{
-			"src": "^(.*)$",
-			"dest": "docs$1"
-		}
-	]
+	"alias": "react-circular-input"
 }

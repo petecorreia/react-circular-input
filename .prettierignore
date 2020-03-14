@@ -1,0 +1,12 @@
+node_modules
+public
+coverage
+storybook-static
+.vscode
+generated
+build
+dist
+*.json
+*.yml
+*.yaml
+*.html
