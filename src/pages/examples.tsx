@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Spring, config } from 'react-spring/renderprops.cjs'
 import Link from 'next/link'
-import CodeHighlight from './components/CodeHighlight'
-import Lead from './components/Lead'
-import BoxCenteredOnMobile from './components/BoxCenteredOnMobile'
-import SEO from './components/SEO'
+import CodeHighlight from '../shared/CodeHighlight'
+import Lead from '../shared/Lead'
+import BoxCenteredOnMobile from '../shared/BoxCenteredOnMobile'
+import SEO from '../shared/SEO'
 import {
 	CircularInput,
 	CircularTrack,

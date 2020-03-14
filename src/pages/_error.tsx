@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { NextPage } from 'next'
 
 type Props = {
-	statusCode: string
+	statusCode: number
 }
 
 const Error: NextPage<Props> = ({ statusCode }) => (
@@ -26,3 +26,5 @@ Error.getInitialProps = ({ res, err }) => {
 	const statusCode = res ? res.statusCode : err ? err.statusCode : null
 	return { statusCode }
 }
+
+export default Error

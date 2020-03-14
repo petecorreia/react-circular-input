@@ -1,6 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
-import config from '../config'
+import config from '../../config'
 
 const SEO = () => (
 	<Head>

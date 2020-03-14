@@ -4,9 +4,9 @@ import Head from 'next/head'
 import Link from 'next/link'
 import styled, { ThemeProvider, css } from 'styled-components'
 import { Box, Flex } from 'rebass'
-import config from './config'
-import GlobalStyle from './components/GlobalStyle'
-import Lead from './components/Lead'
+import config from '../../config'
+import GlobalStyle from '../shared/GlobalStyle'
+import Lead from '../shared/Lead'
 
 const Main = styled(Flex)`
 	max-width: 1290px;

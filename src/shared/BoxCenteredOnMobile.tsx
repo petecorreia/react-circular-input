@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Flex } from 'rebass'
-import { Theme } from '../config'
+import { Theme } from '../../config'
 
 const BoxCenteredOnMobile = styled(Flex)`
 	justify-content: center;

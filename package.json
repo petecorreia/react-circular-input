@@ -12,8 +12,8 @@
 		"dist"
 	],
 	"scripts": {
-		"start": "tsc -w",
-		"build": "rm -rf dist && tsc",
+		"start": "tsc -w -p tsconfig.lib.json",
+		"build": "rm -rf dist && tsc -p tsconfig.lib.json",
 		"prepare": "npm run build",
 		"format": "prettier --config .prettierrc --write \"src/**/*\"",
 		"lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",

@@ -1,7 +1,7 @@
 import React from 'react'
-import CodeHighlight from './components/CodeHighlight'
-import Lead from './components/Lead'
-import SEO from './components/SEO'
+import CodeHighlight from '../shared/CodeHighlight'
+import Lead from '../shared/Lead'
+import SEO from '../shared/SEO'
 
 const Hooks = () => (
 	<>

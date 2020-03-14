@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
-import CodeHighlight from './components/CodeHighlight'
-import BoxCenteredOnMobile from './components/BoxCenteredOnMobile'
-import SEO from './components/SEO'
+import CodeHighlight from '../shared/CodeHighlight'
+import BoxCenteredOnMobile from '../shared/BoxCenteredOnMobile'
+import SEO from '../shared/SEO'
 import {
 	CircularInput,
 	CircularProgress,

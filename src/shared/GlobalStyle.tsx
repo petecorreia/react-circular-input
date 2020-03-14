@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 import { normalize } from 'polished'
-import { Theme } from '../config'
+import { Theme } from '../../config'
 
 const GlobalStyle = createGlobalStyle<{
 	theme: Theme
