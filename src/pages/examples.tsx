@@ -1,18 +1,28 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { Spring, config } from 'react-spring/renderprops.cjs'
+import { Spring, config as springConfig } from 'react-spring/renderprops.cjs'
 import Link from 'next/link'
 import CodeHighlight from '../shared/CodeHighlight'
 import Lead from '../shared/Lead'
 import BoxCenteredOnMobile from '../shared/BoxCenteredOnMobile'
 import SEO from '../shared/SEO'
+import { theme } from '../shared/config'
 import {
 	CircularInput,
 	CircularTrack,
 	CircularProgress,
 	CircularThumb,
-	useCircularInputContext
+	useCircularInputContext,
 } from '../'
+
+export const Example = styled(BoxCenteredOnMobile)`
+	padding: ${theme.space[3]}px 0;
+	margin-top: ${theme.space[4]}px;
+
+	@media screen and (min-width: ${theme.breakpoints[2]}) {
+		padding: ${theme.space[4]}px 0;
+	}
+`
 
 const Examples = () => (
 	<>
@@ -82,9 +92,9 @@ const Examples = () => (
 			styling.
 		</p>
 
-		<BoxCenteredOnMobile py={[3, 3, 4]} mt={4}>
+		<Example>
 			<DefaultExample />
-		</BoxCenteredOnMobile>
+		</Example>
 
 		<CodeHighlight
 			code={`
@@ -108,9 +118,9 @@ const Examples = () => (
 			animation.
 		</p>
 
-		<BoxCenteredOnMobile py={[3, 3, 4]} mt={4}>
+		<Example>
 			<AnimatedExample />
-		</BoxCenteredOnMobile>
+		</Example>
 
 		<CodeHighlight
 			code={`
@@ -143,9 +153,9 @@ const Examples = () => (
 			so you can also just tweak most (see Component docs) attributes 💅
 		</p>
 
-		<BoxCenteredOnMobile py={[3, 3, 4]} mt={4}>
+		<Example>
 			<StyledExample />
-		</BoxCenteredOnMobile>
+		</Example>
 
 		<CodeHighlight
 			code={`
@@ -178,9 +188,9 @@ const Examples = () => (
 			you can create your own components! 🤩
 		</p>
 
-		<BoxCenteredOnMobile py={[3, 3, 4]} mt={4}>
+		<Example>
 			<CustomExample />
-		</BoxCenteredOnMobile>
+		</Example>
 
 		<CodeHighlight
 			code={`
@@ -216,9 +226,9 @@ const Examples = () => (
 
 		<p>Can be used to simply display progress/gauge.</p>
 
-		<BoxCenteredOnMobile py={[3, 3, 4]} mt={4}>
+		<Example>
 			<ProgressExample />
-		</BoxCenteredOnMobile>
+		</Example>
 
 		<CodeHighlight
 			code={`
@@ -236,9 +246,9 @@ const Examples = () => (
 			and much more with simple code.
 		</p>
 
-		<BoxCenteredOnMobile py={[3, 3, 4]} mt={4}>
+		<Example>
 			<MinMaxScaleExample />
-		</BoxCenteredOnMobile>
+		</Example>
 
 		<CodeHighlight
 			code={`
@@ -287,9 +297,9 @@ const Examples = () => (
 			introduce the stepped interaction.
 		</p>
 
-		<BoxCenteredOnMobile py={[3, 3, 4]} mt={4}>
+		<Example>
 			<SteppedExample />
-		</BoxCenteredOnMobile>
+		</Example>
 
 		<CodeHighlight
 			code={`
@@ -320,12 +330,12 @@ const Examples = () => (
 			Omitting the <code>onChange</code> prop makes it readonly.
 		</p>
 
-		<BoxCenteredOnMobile py={[3, 3, 4]} mt={4}>
+		<Example>
 			<CircularInput value={0.25}>
 				<CircularTrack />
 				<CircularProgress />
 			</CircularInput>
-		</BoxCenteredOnMobile>
+		</Example>
 
 		<CodeHighlight
 			code={`
@@ -343,9 +353,9 @@ const Examples = () => (
 			context.
 		</p>
 
-		<BoxCenteredOnMobile py={[3, 3, 4]} mt={4}>
+		<Example>
 			<RenderPropExample />
-		</BoxCenteredOnMobile>
+		</Example>
 
 		<CodeHighlight
 			code={`
@@ -390,7 +400,7 @@ const Examples = () => (
 	</>
 )
 
-function DefaultExample() {
+export function DefaultExample() {
 	const [value, setValue] = useState(0.25)
 	return (
 		<CircularInput value={value} onChange={setValue}>
@@ -412,8 +422,8 @@ function ProgressExample() {
 	}, [])
 
 	return (
-		<Spring to={{ value }} config={config.slow}>
-			{props => (
+		<Spring to={{ value }} config={springConfig.slow}>
+			{(props) => (
 				<CircularInput value={props.value}>
 					<CircularTrack strokeWidth={5} stroke="#eee" />
 					<CircularProgress
@@ -452,8 +462,8 @@ function AnimatedExample() {
 	const [value, setValue] = useState(0.25)
 
 	return (
-		<Spring to={{ value }} config={config.stiff}>
-			{props => (
+		<Spring to={{ value }} config={springConfig.stiff}>
+			{(props) => (
 				<CircularInput value={props.value} onChange={setValue}>
 					<CircularTrack />
 					<CircularProgress />
@@ -486,8 +496,8 @@ function CustomExample() {
 	const [value, setValue] = useState(0.25)
 
 	return (
-		<Spring to={{ value }} config={config.stiff}>
-			{props => (
+		<Spring to={{ value }} config={springConfig.stiff}>
+			{(props) => (
 				<CircularInput value={props.value} onChange={setValue}>
 					<CircularProgress
 						strokeWidth={45}
@@ -531,7 +541,7 @@ function MinMaxScaleExample() {
 	const max = 0.75
 
 	// get value within limits
-	const valueWithinLimits = v => Math.min(Math.max(v, min), max)
+	const valueWithinLimits = (v) => Math.min(Math.max(v, min), max)
 
 	// custom range
 	const range = [0, 100]
@@ -544,7 +554,7 @@ function MinMaxScaleExample() {
 			// make sure value is always within limits
 			value={valueWithinLimits(value)}
 			// make sure we set value within limits
-			onChange={v => setValue(valueWithinLimits(v))}
+			onChange={(v) => setValue(valueWithinLimits(v))}
 		>
 			<CircularTrack />
 			<CircularProgress />
@@ -571,11 +581,11 @@ function MinMaxScaleExample() {
 
 function SteppedExample() {
 	const [value, setValue] = useState(0.25)
-	const stepValue = v => Math.round(v * 10) / 10
+	const stepValue = (v) => Math.round(v * 10) / 10
 	return (
 		<CircularInput
 			value={stepValue(value)}
-			onChange={v => setValue(stepValue(v))}
+			onChange={(v) => setValue(stepValue(v))}
 		>
 			<CircularTrack />
 			<CircularProgress />

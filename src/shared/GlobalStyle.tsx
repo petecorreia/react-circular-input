@@ -1,10 +1,8 @@
 import { createGlobalStyle } from 'styled-components'
 import { normalize } from 'polished'
-import { Theme } from '../../config'
+import { theme } from '../shared/config'
 
-const GlobalStyle = createGlobalStyle<{
-	theme: Theme
-}>`
+const GlobalStyle = createGlobalStyle`
 	${normalize()};
 
 	*,
@@ -28,8 +26,8 @@ const GlobalStyle = createGlobalStyle<{
 	}
 
 	h1, h2, h3 {
-		margin-top: ${({ theme }) => theme.space[4]}px;
-		margin-bottom: ${({ theme }) => theme.space[3]}px;
+		margin-top: ${theme.space[4]}px;
+		margin-bottom: ${theme.space[3]}px;
 	}
 
 	h1 {
@@ -43,14 +41,14 @@ const GlobalStyle = createGlobalStyle<{
 	ul, ol {
 		padding-left: 1em;
 
-		@media screen and (min-width: ${({ theme }) => theme.breakpoints[1]}) {
-			padding-left: ${({ theme }) => theme.space[4]}px;
+		@media screen and (min-width: ${theme.breakpoints[1]}) {
+			padding-left: ${theme.space[4]}px;
 		}
 	}
 
 	li {
 		& + & {
-			margin-top: ${({ theme }) => theme.space[2]}px;
+			margin-top: ${theme.space[2]}px;
 		}
 	}
 
@@ -60,7 +58,7 @@ const GlobalStyle = createGlobalStyle<{
 
 	hr,
 	blockquote {
-		margin: ${({ theme }) => theme.space[4]}px 0;
+		margin: ${theme.space[4]}px 0;
 	}
 
 	hr {
@@ -69,7 +67,7 @@ const GlobalStyle = createGlobalStyle<{
 	}
 
 	blockquote {
-		font-size: ${({ theme }) => theme.fontSizes[3]}px;
+		font-size: ${theme.fontSizes[3]}px;
 		line-height: 1.375;
 	}
 

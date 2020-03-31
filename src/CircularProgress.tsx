@@ -12,7 +12,7 @@ type Props = JSX.IntrinsicElements['circle'] &
 	}
 
 const defaultProps = {
-	stroke: '#3D99FF'
+	stroke: '#3D99FF',
 }
 
 export const CircularProgress = (props: Props) => {

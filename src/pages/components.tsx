@@ -1,14 +1,22 @@
 import React, { useState } from 'react'
+import styled from 'styled-components'
 import Link from 'next/link'
 import CodeHighlight from '../shared/CodeHighlight'
 import BoxCenteredOnMobile from '../shared/BoxCenteredOnMobile'
 import SEO from '../shared/SEO'
+import { theme } from '../shared/config'
 import {
 	CircularInput,
 	CircularProgress,
 	CircularThumb,
-	CircularTrack
+	CircularTrack,
 } from '../'
+
+const Example = styled(BoxCenteredOnMobile)``
+const ExampleSpaced = styled(BoxCenteredOnMobile)`
+	padding: ${theme.space[3]}px 0;
+	margin-top: ${theme.space[3]}px;
+`
 
 const CircularInputExample = () => {
 	const [value, setValue] = useState(0.25)
@@ -67,9 +75,9 @@ const Components = () => (
 			`}
 		/>
 
-		<BoxCenteredOnMobile py={3} mt={3}>
+		<ExampleSpaced>
 			<CircularInputExample />
-		</BoxCenteredOnMobile>
+		</ExampleSpaced>
 
 		<h3>Props</h3>
 
@@ -105,9 +113,9 @@ const Components = () => (
 			`}
 		/>
 
-		<BoxCenteredOnMobile py={3} mt={3}>
+		<ExampleSpaced>
 			<CircularProgressExample />
-		</BoxCenteredOnMobile>
+		</ExampleSpaced>
 
 		<h3>Props</h3>
 
@@ -141,9 +149,9 @@ const Components = () => (
 			`}
 		/>
 
-		<BoxCenteredOnMobile>
+		<Example>
 			<CircularThumbExample />
-		</BoxCenteredOnMobile>
+		</Example>
 
 		<h3>Props</h3>
 
@@ -175,9 +183,9 @@ const Components = () => (
 			`}
 		/>
 
-		<BoxCenteredOnMobile>
+		<Example>
 			<CircularTrackExample />
-		</BoxCenteredOnMobile>
+		</Example>
 
 		<h3>Props</h3>
 

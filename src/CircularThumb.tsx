@@ -14,7 +14,7 @@ export const CircularThumb = (props: JSX.IntrinsicElements['circle']) => {
 
 	const style = {
 		transition: 'r 150ms cubic-bezier(0.215, 0.61, 0.355, 1)',
-		...(props.style || {})
+		...(props.style || {}),
 	}
 	return (
 		<circle

@@ -3,7 +3,7 @@ import {
 	useContext,
 	Context as ReactContext,
 	SetStateAction,
-	Dispatch
+	Dispatch,
 } from 'react'
 import { Coordinates } from './utils'
 

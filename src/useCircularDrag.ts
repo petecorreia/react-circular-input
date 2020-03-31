@@ -6,7 +6,7 @@ export function useCircularDrag(ref: RefObject<SVGElement | null>) {
 	const [isDragging, setDragging] = useState(false)
 
 	const handleStart: EventListener = useCallback(
-		e => {
+		(e) => {
 			if (!onChange) return
 			stopEvent(e)
 			setDragging(true)
@@ -17,7 +17,7 @@ export function useCircularDrag(ref: RefObject<SVGElement | null>) {
 	)
 
 	const handleMove: EventListener = useCallback(
-		e => {
+		(e) => {
 			stopEvent(e)
 			const nearestValue = getValueFromPointerEvent(e)
 			onChange(nearestValue)
@@ -25,7 +25,7 @@ export function useCircularDrag(ref: RefObject<SVGElement | null>) {
 		[onChange, getValueFromPointerEvent]
 	)
 
-	const handleEnd: EventListener = e => {
+	const handleEnd: EventListener = (e) => {
 		stopEvent(e)
 		setDragging(false)
 	}
@@ -82,7 +82,7 @@ function removeListeners(onMove: EventListener, onEnd: EventListener) {
 	document.removeEventListener('touchend', onEnd)
 }
 
-const stopEvent: EventListener = e => {
+const stopEvent: EventListener = (e) => {
 	e.stopPropagation()
 	if (e.cancelable) {
 		e.preventDefault()

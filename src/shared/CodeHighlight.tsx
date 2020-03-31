@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useRef, useEffect } from 'react'
 import styled from 'styled-components'
 import stripIndent from 'strip-indent'
+import { theme } from './config'
 import Prism from 'prismjs'
 import 'prismjs/components/prism-javascript'
 import 'prismjs/components/prism-typescript'
@@ -16,20 +17,20 @@ type Props = {
 }
 
 const defaultProps: Partial<Props> = {
-	language: 'tsx'
+	language: 'tsx',
 }
 
 const Wrapper = styled.div`
-	padding: ${({ theme }) => theme.space[3]}px;
-	margin: ${({ theme }) => theme.space[4]}px 0;
+	padding: ${theme.space[3]}px;
+	margin: ${theme.space[4]}px 0;
 	background: #f6f6f6;
 
 	&:first-child {
 		margin-top: 0;
 	}
 
-	@media screen and (min-width: ${({ theme }) => theme.breakpoints[1]}) {
-		padding: ${({ theme }) => theme.space[4]}px;
+	@media screen and (min-width: ${theme.breakpoints[1]}) {
+		padding: ${theme.space[4]}px;
 	}
 `
 
@@ -119,14 +120,14 @@ const Code = styled.pre`
 `
 
 const Preview = styled.div`
-	margin-bottom: ${({ theme }) => theme.space[4]}px;
+	margin-bottom: ${theme.space[4]}px;
 `
 
 const CodeHighlight: FunctionComponent<Props> = ({
 	code,
 	language,
 	children,
-	className
+	className,
 }) => {
 	const ref = useRef<HTMLPreElement | null>(null)
 

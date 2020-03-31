@@ -2,33 +2,59 @@ import React, { FunctionComponent, ComponentProps, useState } from 'react'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import Link from 'next/link'
-import styled, { ThemeProvider, css } from 'styled-components'
-import { Box, Flex } from 'rebass'
-import config from '../../config'
+import styled, { css } from 'styled-components'
+import {
+	title,
+	description,
+	routes,
+	theme,
+	author,
+	authorURL,
+} from '../shared/config'
 import GlobalStyle from '../shared/GlobalStyle'
 import Lead from '../shared/Lead'
 
-const Main = styled(Flex)`
+const Main = styled.main`
+	display: flex;
+	flex-direction: column;
 	max-width: 1290px;
 	min-height: 100vh;
+	padding: 32px;
+	margin: 0 auto;
+
+	@media screen and (min-width: ${theme.breakpoints[0]}) {
+		padding-top: 64px;
+		padding-left: 64px;
+		padding-right: 64px;
+	}
+
+	@media screen and (min-width: ${theme.breakpoints[1]}) {
+		padding-top: 64px;
+		padding-left: 64px;
+		padding-right: 64px;
+	}
+
+	@media screen and (min-width: ${theme.breakpoints[2]}) {
+		padding-top: 128px;
+		padding-left: 128px;
+		padding-right: 128px;
+	}
+
 	@media screen and (max-width: 400px) {
 		.app-title {
 			font-size: 22px;
 		}
 	}
 `
-Main.defaultProps = {
-	as: 'main'
-}
 
 const Title = styled.h1`
 	display: flex;
 	align-items: flex-start;
 	margin: 0;
-	font-size: ${({ theme }) => theme.fontSizes[4]}px;
+	font-size: ${theme.fontSizes[4]}px;
 
 	a {
-		margin-right: ${({ theme }) => theme.space[3]}px;
+		margin-right: ${theme.space[3]}px;
 		text-decoration: none;
 
 		&:focus,
@@ -36,7 +62,7 @@ const Title = styled.h1`
 			text-decoration: underline;
 		}
 
-		@media screen and (min-width: ${({ theme }) => theme.breakpoints[1]}) {
+		@media screen and (min-width: ${theme.breakpoints[1]}) {
 			margin-right: 0;
 		}
 	}
@@ -51,8 +77,7 @@ const MenuIcon = styled.button<{ isOpen: boolean }>`
 	justify-content: center;
 	padding: 0;
 	margin-left: auto;
-	color: ${({ isOpen, theme }) =>
-		isOpen ? 'inherit' : theme.colors.lightgray};
+	color: ${({ isOpen }) => (isOpen ? 'inherit' : theme.colors.lightgray)};
 	background: none;
 	border: none;
 	cursor: pointer;
@@ -63,12 +88,12 @@ const MenuIcon = styled.button<{ isOpen: boolean }>`
 		color: inherit;
 	}
 
-	@media screen and (min-width: ${({ theme }) => theme.breakpoints[1]}) {
+	@media screen and (min-width: ${theme.breakpoints[1]}) {
 		display: none;
 	}
 `
 
-const HamburgerIcon: FunctionComponent<ComponentProps<'svg'>> = props => (
+const HamburgerIcon: FunctionComponent<ComponentProps<'svg'>> = (props) => (
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
 		viewBox="0 0 24 24"
@@ -83,10 +108,26 @@ const HamburgerIcon: FunctionComponent<ComponentProps<'svg'>> = props => (
 	</svg>
 )
 
-const Nav = styled(Flex)<{ isOpen: boolean }>`
+const Header = styled.header`
+	box-sizing: border-box;
+	padding-right: 0px;
+	width: 100%;
+
+	@media screen and (min-width: ${theme.breakpoints[1]}) {
+		width: 33.33333333333333%;
+		padding-right: 32px;
+	}
+
+	@media screen and (min-width: ${theme.breakpoints[2]}) {
+		padding-right: 64px;
+	}
+`
+
+const Nav = styled.nav<{ isOpen: boolean }>`
+	display: flex;
 	flex-direction: column;
 	align-items: flex-end;
-	margin-top: ${({ theme }) => theme.space[3]}px;
+	margin-top: ${theme.space[3]}px;
 
 	${({ isOpen }) =>
 		!isOpen &&
@@ -94,50 +135,60 @@ const Nav = styled(Flex)<{ isOpen: boolean }>`
 			display: none;
 		`}
 
-	@media screen and (min-width: ${({ theme }) => theme.breakpoints[1]}) {
+	@media screen and (min-width: ${theme.breakpoints[1]}) {
 		display: flex;
 		align-items: flex-start;
 	}
 `
-Nav.defaultProps = {
-	as: 'nav'
-}
 
-const Content = styled(Flex)`
+const Content = styled.div`
+	display: flex;
 	flex-direction: column;
 	flex: 1 0 auto;
 
-	@media screen and (min-width: ${({ theme }) => theme.breakpoints[1]}) {
+	@media screen and (min-width: ${theme.breakpoints[1]}) {
 		flex-direction: row;
 	}
 `
 
-const ContentInner = styled(Box)`
+const ContentInner = styled.div`
+	width: 100%;
+	padding-top: 32px;
+
+	@media screen and (min-width: ${theme.breakpoints[1]}) {
+		width: 66.66666666666666%;
+		padding-top: 0px;
+	}
+
+	@media screen and (min-width: ${theme.breakpoints[2]}) {
+		padding-top: 0px;
+	}
+
 	p {
 		max-width: 690px;
 
 		&:first-child {
-			margin-top: ${({ theme }) => theme.space[2]}px;
+			margin-top: ${theme.space[2]}px;
 		}
 	}
 
-	@media screen and (min-width: ${({ theme }) => theme.breakpoints[1]}) {
+	@media screen and (min-width: ${theme.breakpoints[1]}) {
 		p {
 			&:first-child {
-				margin-top: ${({ theme }) => theme.space[2]}px;
+				margin-top: ${theme.space[2]}px;
 			}
 		}
 
 		${Lead} {
 			&:first-child {
-				margin-top: ${({ theme }) => theme.space[1]}px;
+				margin-top: ${theme.space[1]}px;
 			}
 		}
 	}
 `
 
 const HeaderLink = styled.a<{ isActive: boolean }>`
-	margin-bottom: ${({ theme }) => theme.space[2]}px;
+	margin-bottom: ${theme.space[2]}px;
 	font-weight: ${({ isActive }) => (isActive ? 'bold' : 'normal')};
 	text-decoration: ${({ isActive }) => (isActive ? 'underline' : 'none')};
 
@@ -147,19 +198,14 @@ const HeaderLink = styled.a<{ isActive: boolean }>`
 	}
 `
 
-const Footer = styled(Box)`
+const Footer = styled.footer`
 	flex: 0 0 auto;
 	text-align: right;
-	font-size: ${({ theme }) => theme.fontSizes[0]}px;
+	font-size: ${theme.fontSizes[0]}px;
 `
-Footer.defaultProps = {
-	as: 'footer'
-}
 
 function App({ Component, pageProps, router }: AppProps) {
 	const [isMenuOpen, setMenuOpen] = useState(false)
-
-	const { title, description, routes, theme, author, authorURL } = config
 
 	const activeRoute = routes.find(({ path }) => path === router.asPath)
 
@@ -168,27 +214,16 @@ function App({ Component, pageProps, router }: AppProps) {
 		: `${title} — ${description}`
 
 	return (
-		<ThemeProvider theme={theme}>
+		<>
 			<GlobalStyle />
-			<Main
-				mx="auto"
-				flexDirection="column"
-				px={[4, 5, 5, 6]}
-				pt={[4, 5, 5, 6]}
-				pb={4}
-			>
+			<Main>
 				<Head>
 					<title>{pageTitle}</title>
 					<meta name="description" content={description} />
 				</Head>
 
 				<Content>
-					<Box
-						as="header"
-						width={[1, 1, 1 / 3]}
-						pr={[0, 0, 4, 5]}
-						className="app-header"
-					>
+					<Header>
 						<Title className="app-title">
 							<MenuIcon
 								isOpen={isMenuOpen}
@@ -234,14 +269,14 @@ function App({ Component, pageProps, router }: AppProps) {
 								)
 							)}
 						</Nav>
-					</Box>
+					</Header>
 
-					<ContentInner width={[1, 1, 2 / 3]} pt={[4, 4, 0, 0]}>
+					<ContentInner>
 						<Component {...pageProps} />
 					</ContentInner>
 				</Content>
 
-				<Footer pt={4} className="app-footer">
+				<Footer className="app-footer">
 					© {new Date().getFullYear()}{' '}
 					{author ? (
 						authorURL ? (
@@ -254,7 +289,7 @@ function App({ Component, pageProps, router }: AppProps) {
 					)}
 				</Footer>
 			</Main>
-		</ThemeProvider>
+		</>
 	)
 }
 

@@ -4,7 +4,7 @@ import React, {
 	useMemo,
 	useCallback,
 	useState,
-	KeyboardEvent
+	KeyboardEvent,
 } from 'react'
 import {
 	Coordinates,
@@ -12,11 +12,11 @@ import {
 	valueToAngle,
 	calculateNearestValueToPoint,
 	getElementPosition,
-	absPos
+	absPos,
 } from './utils'
 import {
 	CircularInputContext,
-	CircularInputProvider
+	CircularInputProvider,
 } from './CircularInputContext'
 import { CircularTrack } from './CircularTrack'
 import { CircularProgress } from './CircularProgress'
@@ -95,23 +95,23 @@ export function CircularInput({
 		role: 'slider',
 		onFocus: handleFocus,
 		onBlur: handleBlur,
-		onKeyDown: handleKeyDown
+		onKeyDown: handleKeyDown,
 	}
 
 	// Geometry utilities
 
 	const getPointFromValue = useCallback(
-		v =>
+		(v) =>
 			polarToCartesian({
 				center,
 				angle: valueToAngle(v || value),
-				radius
+				radius,
 			}),
 		[value, center, radius]
 	)
 
 	const getValueFromPointerEvent = useCallback(
-		e =>
+		(e) =>
 			calculateNearestValueToPoint({
 				point: absPos(e),
 				container: getElementPosition(
@@ -119,7 +119,7 @@ export function CircularInput({
 				) as Coordinates,
 				value,
 				center,
-				radius
+				radius,
 			}),
 		[value, center, radius]
 	)
@@ -135,7 +135,7 @@ export function CircularInput({
 			setFocused,
 			onChange,
 			getPointFromValue,
-			getValueFromPointerEvent
+			getValueFromPointerEvent,
 		}),
 		[
 			value,
@@ -145,12 +145,12 @@ export function CircularInput({
 			isFocused,
 			setFocused,
 			getPointFromValue,
-			getValueFromPointerEvent
+			getValueFromPointerEvent,
 		]
 	)
 
 	const handleClick = useCallback(
-		e => {
+		(e) => {
 			if (isReadonly) return
 			const nearestValue = getValueFromPointerEvent(e)
 			onChange(nearestValue)
@@ -163,7 +163,7 @@ export function CircularInput({
 		outline: 'none',
 		...(props.style || {}),
 		touchAction: 'manipulation',
-		WebkitTapHighlightColor: 'rgba(0,0,0,0)'
+		WebkitTapHighlightColor: 'rgba(0,0,0,0)',
 	}
 
 	return (

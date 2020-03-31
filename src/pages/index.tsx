@@ -1,15 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import CodeHighlight from '../shared/CodeHighlight'
 import Lead from '../shared/Lead'
-import BoxCenteredOnMobile from '../shared/BoxCenteredOnMobile'
 import SEO from '../shared/SEO'
-import { CircularInput } from '../'
-
-const Example = () => {
-	const [value, setValue] = useState(0.25)
-	return <CircularInput value={value} onChange={v => setValue(v)} />
-}
+import { Example, DefaultExample } from './examples'
 
 const Home = () => (
 	<>
@@ -19,16 +13,11 @@ const Home = () => (
 			React components for easily composing a circular range input
 		</Lead>
 
-		<BoxCenteredOnMobile py={[3, 3, 4]} mt={4}>
-			<Example />
-		</BoxCenteredOnMobile>
+		<Example>
+			<DefaultExample />
+		</Example>
 
-		<CodeHighlight
-			code={`
-			npm i react-circular-input
-		`}
-			language="bash"
-		/>
+		<CodeHighlight code={`npm i react-circular-input`} language="bash" />
 
 		<h2>Example</h2>
 

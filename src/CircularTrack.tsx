@@ -14,7 +14,7 @@ export const defaultProps = {
 	stroke: '#CEE0F5',
 	fill: 'none',
 	strokeWidth: 20,
-	strokeLinecap: 'round'
+	strokeLinecap: 'round',
 }
 
 export const CircularTrack = ({ strokeWidth, ...props }: Props) => {
