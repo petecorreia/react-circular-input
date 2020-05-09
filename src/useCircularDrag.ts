@@ -2,7 +2,11 @@ import { useEffect, RefObject, useState, useCallback } from 'react'
 import { useCircularInputContext } from './'
 
 export function useCircularDrag(ref: RefObject<SVGElement | null>) {
-	const { onChange, getValueFromPointerEvent } = useCircularInputContext()
+	const {
+		onChange,
+		onChangeEnd,
+		getValueFromPointerEvent,
+	} = useCircularInputContext()
 	const [isDragging, setDragging] = useState(false)
 
 	const handleStart: EventListener = useCallback(
@@ -25,10 +29,16 @@ export function useCircularDrag(ref: RefObject<SVGElement | null>) {
 		[onChange, getValueFromPointerEvent]
 	)
 
-	const handleEnd: EventListener = (e) => {
-		stopEvent(e)
-		setDragging(false)
-	}
+	const handleEnd: EventListener = useCallback(
+		(e) => {
+			if (!onChangeEnd) return
+			stopEvent(e)
+			setDragging(false)
+			const nearestValue = getValueFromPointerEvent(e)
+			onChangeEnd(nearestValue)
+		},
+		[onChangeEnd, getValueFromPointerEvent]
+	)
 
 	// we can't just use React for this due to needing { passive: false } to prevent touch devices scrolling
 	useEffect(() => {
@@ -47,7 +57,7 @@ export function useCircularDrag(ref: RefObject<SVGElement | null>) {
 		return () => {
 			removeListeners(handleMove, handleEnd)
 		}
-	}, [isDragging, handleMove])
+	}, [isDragging, handleMove, handleEnd])
 
 	return { isDragging }
 }

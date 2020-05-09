@@ -28,6 +28,7 @@ type Props = Omit<DefaultHTMLProps, 'onChange'> & {
 	value: number
 	radius?: number
 	onChange?: (value: number) => void
+	onChangeEnd?: (value: number) => void
 	// disallow some props
 	ref?: undefined
 	width?: undefined
@@ -40,6 +41,7 @@ export function CircularInput({
 	value = 0.25,
 	radius = 100,
 	onChange = () => {},
+	onChangeEnd = () => {},
 	children,
 	...props
 }: Props) {
@@ -134,6 +136,7 @@ export function CircularInput({
 			isFocused,
 			setFocused,
 			onChange,
+			onChangeEnd,
 			getPointFromValue,
 			getValueFromPointerEvent,
 		}),
@@ -142,6 +145,7 @@ export function CircularInput({
 			radius,
 			center,
 			onChange,
+			onChangeEnd,
 			isFocused,
 			setFocused,
 			getPointFromValue,
@@ -154,8 +158,9 @@ export function CircularInput({
 			if (isReadonly) return
 			const nearestValue = getValueFromPointerEvent(e)
 			onChange(nearestValue)
+			onChangeEnd(nearestValue)
 		},
-		[onChange, getValueFromPointerEvent, isReadonly]
+		[onChange, onChangeEnd, getValueFromPointerEvent, isReadonly]
 	)
 
 	const style = {
