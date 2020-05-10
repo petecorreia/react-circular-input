@@ -91,10 +91,10 @@ export function absPos(e: TouchEvent | MouseEvent) {
 	if (touchEvent) {
 		return {
 			x:
-				touchEvent.touches[0].pageX -
+				touchEvent.changedTouches[0].pageX -
 				(window.scrollX || window.pageXOffset),
 			y:
-				touchEvent.touches[0].pageY -
+				touchEvent.changedTouches[0].pageY -
 				(window.scrollY || window.pageYOffset),
 		}
 	}

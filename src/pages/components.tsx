@@ -16,11 +16,28 @@ const Example = styled(BoxCenteredOnMobile)``
 const ExampleSpaced = styled(BoxCenteredOnMobile)`
 	padding: ${theme.space[3]}px 0;
 	margin-top: ${theme.space[3]}px;
+	flex-direction: column;
+	align-items: center;
 `
 
 const CircularInputExample = () => {
-	const [value, setValue] = useState(0.25)
-	return <CircularInput value={value} radius={75} onChange={setValue} />
+	const [onChangeValue, setOnChangeValue] = useState(0.25)
+	const [onChangeEndValue, setOnChangeEndValue] = useState(0.25)
+	return (
+		<>
+			<div style={{ paddingBottom: 30 }}>
+				onChangeValue: {onChangeValue.toFixed(2)}
+				<br />
+				onChangeEndValue: {onChangeEndValue.toFixed(2)}
+			</div>
+			<CircularInput
+				value={onChangeValue}
+				radius={75}
+				onChange={setOnChangeValue}
+				onChangeEnd={setOnChangeEndValue}
+			/>
+		</>
+	)
 }
 
 const CircularProgressExample = () => {
@@ -71,7 +88,12 @@ const Components = () => (
 
 		<CodeHighlight
 			code={`
-				<CircularInput value={value} radius={75} onChange={setValue} />
+				<CircularInput
+					value={value}
+					radius={75}
+					onChange={setOnChangeValue}
+					onChangeEnd={setOnChangeEndValue}
+				/>
 			`}
 		/>
 
@@ -86,6 +108,7 @@ const Components = () => (
 				✅ value: number // range: [0-1]
 				✅ radius?: number
 				✅ onChange?: (value: number) => any
+				✅ onChangeEnd?: (value: number) => any
 
 				// the following props are disallowed to support functionality:
 				🚫 ref

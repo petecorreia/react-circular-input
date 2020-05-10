@@ -14,6 +14,7 @@ export type CircularInputContext = {
 	isFocused: boolean
 	setFocused: Dispatch<SetStateAction<boolean>>
 	onChange: (value: number) => void
+	onChangeEnd: (value: number) => void
 	getPointFromValue: (v?: number) => Coordinates | null
 	getValueFromPointerEvent: (...args: Parameters<EventListener>) => number
 }
