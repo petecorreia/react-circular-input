@@ -31,9 +31,9 @@ export function useCircularDrag(ref: RefObject<SVGElement | null>) {
 
 	const handleEnd: EventListener = useCallback(
 		(e) => {
-			if (!onChangeEnd) return
 			stopEvent(e)
 			setDragging(false)
+			if (!onChangeEnd) return
 			const nearestValue = getValueFromPointerEvent(e)
 			onChangeEnd(nearestValue)
 		},
