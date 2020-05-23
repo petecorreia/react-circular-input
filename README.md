@@ -17,7 +17,7 @@ React components for easily composing a circular range input
 npm i react-circular-input
 ```
 
-<a href="https://react-circular-input.now.sh"><img src="https://react-circular-input.now.sh/static/social-example.gif" alt="Animated example image (GIF)"></a>
+<a href="https://react-circular-input.now.sh"><img src="https://react-circular-input.now.sh/social-example.gif" alt="Animated example image (GIF)"></a>
 
 ## Example
 
