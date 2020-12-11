@@ -47,7 +47,7 @@ export function CircularInput({
 }: Props) {
 	const containerRef: RefObject<SVGSVGElement> = useRef(null)
 	const size = radius * 2
-	const center = { x: radius, y: radius }
+	const center = useMemo(() => ({ x: radius, y: radius }), [radius])
 
 	// Accessibility
 	const [isFocused, setFocused] = useState(false)

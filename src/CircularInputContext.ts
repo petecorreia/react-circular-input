@@ -19,7 +19,9 @@ export type CircularInputContext = {
 	getValueFromPointerEvent: (...args: Parameters<EventListener>) => number
 }
 
-const Context: ReactContext<CircularInputContext | {}> = createContext({})
+const Context: ReactContext<CircularInputContext> = createContext(
+	{} as CircularInputContext
+)
 
 export const CircularInputProvider = Context.Provider
 
