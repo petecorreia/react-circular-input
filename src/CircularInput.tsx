@@ -42,6 +42,7 @@ export function CircularInput({
 	radius = 100,
 	onChange = () => {},
 	onChangeEnd = () => {},
+	tabIndex = 0,
 	children,
 	...props
 }: Props) {
@@ -93,7 +94,7 @@ export function CircularInput({
 	)
 
 	const accessibilityProps = {
-		tabIndex: 0,
+		tabIndex,
 		role: 'slider',
 		onFocus: handleFocus,
 		onBlur: handleBlur,
