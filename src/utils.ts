@@ -98,7 +98,7 @@ export function absPos(e: TouchEvent | MouseEvent) {
 				(window.scrollY || window.pageYOffset),
 		}
 	}
-	const mouseEvent = (e as MouseEvent).pageX && (e as MouseEvent)
+	const mouseEvent = (e as MouseEvent).pageX ?? (e as MouseEvent)
 	if (mouseEvent) {
 		return {
 			x: mouseEvent.pageX - (window.scrollX || window.pageXOffset),
